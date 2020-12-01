@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import axiosClient from '../components/helpers/axiosClient';
+import axiosInstance from '../components/helpers/axiosInstance';
 
 export const Popular = () => {
   useEffect(() => {
@@ -8,7 +8,9 @@ export const Popular = () => {
     // )
     //   .then((response) => response.json())
     //   .then((data) => console.log(data));
-    axiosClient.get(baseURL);
+    axiosInstance
+      .get('/discover/movie?page=1&with_genres=99')
+      .then((response) => console.log(response));
   }, []);
   return (
     <div>

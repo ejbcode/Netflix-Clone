@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import GlobalStyle from '../GlobalStyle';
 import { Popular } from '../pages/popular';
-import { main } from '../pages/main';
+import { Main } from '../pages/main';
 import { search } from '../pages/search';
 import { upcoming } from '../pages/upcoming';
 import { Nav } from '../components/Nav';
@@ -15,7 +15,7 @@ const AppRoute = () => (
     <BrowserRouter>
       <Nav />
       <Switch>
-        <Route exact path="/" component={main} />
+        <Route exact path="/" component={Main} />
         <Route exact path="/popular" component={Popular} />
         <Route exact path="/favorites" component={favorites} />
         <Route exact path="/search" component={search} />
