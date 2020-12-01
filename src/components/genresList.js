@@ -1,14 +1,41 @@
 export const genresList = {
   trending: '/trending/all/week?api_key={Api}',
-  netflixOriginals: '/discover/tv?api_key={Api}&page=1&with_networks=213',
-  topRated: '/movie/top_rated?api_key=b{Api}&page=2',
   actionMovies: '/discover/movie?page=1&with_genres=28',
   comedyMovies: '/discover/movie?page=1&with_genres=35',
   horrorMovies: '/discover/movie?page=1&with_genres=27',
-  romanceMovies: '/discover/movie?page=1&with_genres=10749',
-  documentary: '/discover/movie?page=1&with_genres=99',
-  netflixs: {
-    title: 'tittt',
+
+  topRated: {
+    title: 'Top Movies',
+    url: '/movie/top_rated?&page=2',
+  },
+
+  action: {
+    title: 'Action',
+    url: '/discover/tv?&page=1&with_networks=28',
+  },
+
+  horror: {
+    title: 'Horror',
+    url: '/discover/tv?&page=1&with_networks=27',
+  },
+
+  comedy: {
+    title: 'Comedy',
+    url: '/discover/tv?&page=1&with_networks=35',
+  },
+
+  romance: {
+    title: 'Romance',
+    url: '/discover/tv?&page=1&with_networks=10749',
+  },
+
+  documentary: {
+    title: 'Documentary',
+    url: '/discover/tv?&page=1&with_networks=213',
+  },
+
+  netflix: {
+    title: 'Netflix Originals',
     url: '/discover/tv?&page=1&with_networks=213',
   },
 };

@@ -2,7 +2,9 @@ import { createGlobalStyle, css } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`${css`
   :root {
-    --colorBg: #121212;
+    --colorBg: #141414;
+    --colorBg: #f3f;
+
     --colorTxt: #fff;
     --colorTxt2: #fdba21;
     --colorTxt3: #ffe;
@@ -32,8 +34,6 @@ const GlobalStyle = createGlobalStyle`${css`
     font-family: 'Open Sans', cursive;
     line-height: 1.5;
     font-size: 1.6rem;
-    max-width: 1200px;
-    width: 95%;
     margin: 0 auto;
   }
   ul {

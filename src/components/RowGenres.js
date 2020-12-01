@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import axiosInstance from './helpers/axiosInstance';
 
-export const RowGenres = ({ data }) => {
-  console.log(url);
+export const RowGenres = (data) => {
+  const { title, url } = data.data;
   useEffect(() => {
     axiosInstance(url).then((response) => console.log(response));
   }, []);
   return (
     <div>
-      <p>{title}</p>
+      <p>{title}</p>{' '}
     </div>
   );
 };
