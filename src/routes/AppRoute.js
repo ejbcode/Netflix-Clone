@@ -2,12 +2,13 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import GlobalStyle from '../GlobalStyle';
-import { Popular } from '../pages/popular';
-import { Main } from '../pages/main';
-import { search } from '../pages/search';
-import { upcoming } from '../pages/upcoming';
 import { Nav } from '../components/Nav';
-import { favorites } from '../pages/favorites';
+import { Home } from '../pages/home';
+import { TvShows } from '../pages/tvShows';
+import { Popular } from '../pages/popular';
+import { Movies } from '../pages/movies';
+import { search } from '../pages/search';
+import { myList } from '../pages/myList';
 
 const AppRoute = () => (
   <div>
@@ -15,11 +16,13 @@ const AppRoute = () => (
     <BrowserRouter>
       <Nav />
       <Switch>
-        <Route exact path="/" component={Main} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/tvshows" component={TvShows} />
+        <Route exact path="/movies" component={Movies} />
         <Route exact path="/popular" component={Popular} />
-        <Route exact path="/favorites" component={favorites} />
+        <Route exact path="/mylist" component={myList} />
+
         <Route exact path="/search" component={search} />
-        <Route exact path="/upcoming" component={upcoming} />
       </Switch>
     </BrowserRouter>
   </div>

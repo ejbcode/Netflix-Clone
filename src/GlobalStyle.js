@@ -6,8 +6,8 @@ const GlobalStyle = createGlobalStyle`${css`
     --colorBg: #f3f;
 
     --colorTxt: #fff;
-    --colorTxt2: #fdba21;
-    --colorTxt3: #ffe;
+    --colorTxt2: #e5e5e5;
+    --colorTxtHover: #b3b3b3;
     --red: #ff4949;
     --black: #2e2e2e;
     --yellow: #fdba21;
@@ -38,11 +38,6 @@ const GlobalStyle = createGlobalStyle`${css`
   }
   ul {
     list-style: none;
-  }
-  a {
-    text-decoration: none;
-    color: var(--colorTxt2);
-    font-size: 1.6rem;
   }
 
   fieldset {
@@ -97,12 +92,10 @@ const GlobalStyle = createGlobalStyle`${css`
     margin-bottom: 1.5rem;
   }
 
-  .active {
-    border: red solid 2px;
-  }
-
   .nav-active {
-    border: green solid 2px;
+    color: var(--colorTxt);
+    font-weight: 700;
+    cursor: default;
   }
 `}`;
 

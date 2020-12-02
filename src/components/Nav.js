@@ -6,8 +6,10 @@ import logoImg from '../assets/logo.png';
 import profileImg from '../assets/profile.png';
 
 const NavStyle = styled.nav`
+  z-index: 10;
+  position: relative;
+  font-size: 1rem;
   padding: 0 4rem;
-  border: red solid 2px;
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.7) 10%,
@@ -21,7 +23,7 @@ const NavStyle = styled.nav`
     align-items: center;
   }
   li {
-    padding: 1rem;
+    padding: 0.4rem;
   }
   .primary-nav {
     display: flex;
@@ -29,13 +31,23 @@ const NavStyle = styled.nav`
     justify-content: space-space-between;
   }
   .logo {
-    width: 90px;
-    height: 30px;
-    border: red solid 1px;
+    height: 25px;
   }
   .logo-profile {
     max-width: 30px;
     border-radius: 7px;
+  }
+  a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: var(--colorTxt2);
+    transition: color 0.5s;
+  }
+  a:hover {
+    color: var(--colorTxtHover);
+  }
+  .secundary-nav {
+    font-size: 2rem;
   }
 `;
 
@@ -52,12 +64,12 @@ export const Nav = () => (
         </li>
 
         <li>
-          <NavLink to="/search" activeClassName="nav-active">
+          <NavLink to="/tvshows" activeClassName="nav-active">
             Tv Shows
           </NavLink>
         </li>
         <li>
-          <NavLink to="/popular" activeClassName="nav-active">
+          <NavLink to="/movies" activeClassName="nav-active">
             Movies
           </NavLink>
         </li>
@@ -68,14 +80,14 @@ export const Nav = () => (
         </li>
 
         <li>
-          <NavLink to="/favorites" activeClassName="nav-active">
+          <NavLink to="/mylist" activeClassName="nav-active">
             My List
           </NavLink>
         </li>
       </ul>
     </div>
 
-    <div>
+    <div className="secundary-nav">
       <ul>
         <li>
           <AiOutlineSearch />
