@@ -3,8 +3,6 @@ import { createGlobalStyle, css } from 'styled-components';
 const GlobalStyle = createGlobalStyle`${css`
   :root {
     --colorBg: #141414;
-    --colorBg: #f3f;
-
     --colorTxt: #fff;
     --colorTxt2: #e5e5e5;
     --colorTxtHover: #b3b3b3;

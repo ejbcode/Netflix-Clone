@@ -4,6 +4,10 @@ export const genresList = {
     url: '/trending/all/week',
   },
 
+  topPopular: {
+    titleSection: 'Top 10 Today',
+    url: '/trending/all/day',
+  },
   topRated: {
     titleSection: 'Top Movies',
     url: '/movie/top_rated?&page=1',

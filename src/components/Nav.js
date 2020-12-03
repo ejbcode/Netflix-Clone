@@ -41,7 +41,7 @@ const NavStyle = styled.nav`
     border-radius: 7px;
   }
   a {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     text-decoration: none;
     color: var(--colorTxt2);
     transition: color 0.5s;

@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import axiosInstance from './helpers/axiosInstance';
 
 const HeroStyle = styled.div`
-  position: absolute;
+  position: relative;
+  margin-top: -35px;
   z-index: -100;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
   width: 100%;
-  min-height: 450px;
   z-index: 0;
 
   .wrapper {
@@ -107,7 +107,7 @@ export const Hero = (data) => {
         </div>
         <div className="description">
           <h2>{title}</h2>
-          <p>{overview}</p>
+          <p>{overview?.slice(0, 200)}</p>
           <div className="buttons">
             <a href="/" className="button-play">
               ► Play
