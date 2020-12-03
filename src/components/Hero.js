@@ -2,33 +2,89 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axiosInstance from './helpers/axiosInstance';
 
-const BackdropContainer = styled.div`
+const HeroStyle = styled.div`
   position: absolute;
   z-index: -100;
-  position: absolute;
   left: 0;
   top: 0;
   right: 0;
-  height: auto;
-  border: green solid 1px;
+  bottom: 0;
   width: 100%;
+  min-height: 450px;
+  z-index: 0;
 
-  background-image: linear-gradient(to right, #111 1%, transparent 70%),
-    linear-gradient(to top, #111 1%, transparent 30%),
-    url(${(props) => props.bg});
-  background-size: cover;
-  background-position: center center;
-  .media-info {
-    border: red solid 1px;
-    height: 55vh;
-    min-height: 300px;
+  .wrapper {
+    position: relative;
+    min-height: 100px;
+    padding-bottom: 45%;
+    overflow: hidden;
+  }
+  .description {
+    z-index: 10;
+    width: 40%;
+    position: absolute;
+    top: 20%;
+    left: 2%;
+    right: 0;
+    bottom: 0;
+  }
+
+  .image-wrapper {
+    position: absolute;
+  }
+
+  .wrapper::after {
+    z-index: 1;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(to right, #111 1%, transparent 70%),
+      linear-gradient(to top, #111 1%, transparent 30%);
+  }
+  h2 {
+    font-size: 2.6vw;
+  }
+  p {
+    font-size: 1.4vw;
+  }
+
+  .buttons {
+    margin-top: 2rem;
+  }
+
+  .button-play,
+  .button-more {
+    font-weight: bold;
+    font-size: 1vw;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 1rem;
+    opacity: 1;
+    transition: all ease 0.2s;
+  }
+
+  .button-more:hover,
+  .button-play:hover {
+    opacity: 0.7;
+  }
+  .button-play {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .button-more {
+    background-color: #333;
+    color: #fff;
   }
 `;
 
 export const Hero = (data) => {
   const { titleSection, url } = data.data;
   const [media, setMedia] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     axiosInstance(url).then((response) => setMedia(response.data.results));
@@ -37,22 +93,31 @@ export const Hero = (data) => {
   const randowMedia = Math.floor(Math.random() * 20);
   /* eslint-disable */
   const { backdrop_path, title, name, overview } = !!media && media[randowMedia];
-  console.log(media);
-  
+
   const bg = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
   {
     /* eslint-enable */
   }
   return (
-    <BackdropContainer bg={bg}>
-      <div className="media-info">
-        <div className="title">
-          <h2>{title || name}kj</h2>
+    <HeroStyle bg={bg}>
+      <div className="wrapper">
+        <div className="image-wrapper">
+          <img src={bg} alt="" />
+          ss
+        </div>
+        <div className="description">
+          <h2>{title}</h2>
           <p>{overview}</p>
+          <div className="buttons">
+            <a href="/" className="button-play">
+              ► Play
+            </a>
+            <a href="/" className="button-more">
+              + More Info
+            </a>
+          </div>
         </div>
       </div>
-
-      {/* <pre>{JSON.stringify(media, null, 4)}</pre> */}
-    </BackdropContainer>
+    </HeroStyle>
   );
 };

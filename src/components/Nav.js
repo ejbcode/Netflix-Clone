@@ -7,7 +7,10 @@ import profileImg from '../assets/profile.png';
 
 const NavStyle = styled.nav`
   z-index: 10;
-  position: relative;
+  position: fixed;
+  right: 0;
+  left: 0;
+
   font-size: 1rem;
   padding: 0 4rem;
   background: linear-gradient(
