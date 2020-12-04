@@ -12,6 +12,7 @@ const HeroStyle = styled.div`
   bottom: 0;
   width: 100%;
   z-index: 0;
+  margin-bottom: -20px;
 
   .wrapper {
     position: relative;
@@ -41,7 +42,12 @@ const HeroStyle = styled.div`
     bottom: 0;
     left: 0;
     right: 0;
-    background-image: linear-gradient(to right, #111 1%, transparent 70%),
+    background-image: linear-gradient(
+        0deg,
+        rgba(20, 20, 20, 1) 0%,
+        rgba(20, 20, 20, 0) 17%
+      ),
+      linear-gradient(to right, #111 1%, transparent 70%),
       linear-gradient(to top, #111 1%, transparent 30%);
   }
   h2 {
