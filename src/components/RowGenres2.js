@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styled from 'styled-components';
 import axiosInstance from './helpers/axiosInstance';
 
 const RowsStyle = styled.article`
+  padding-left: 30px;
   margin-bottom: 30px;
 
   .movieRow--listarea {
     overflow-x: hidden;
-    padding-left: 30px;
     transition: all 0.3s;
     -webkit-animation: showGridCategorie 2.5s ease-in-out;
     animation: showGridCategorie 2.5s ease-in-out;
@@ -98,11 +98,8 @@ export const RowGenres2 = (data) => {
   useEffect(() => {
     axiosInstance(url).then((response) => setMedia(response.data.results));
   }, [url]);
-  console.log(media);
 
   const handleLeftArrow = () => {
-    console.log('left');
-
     let x = scrollX + Math.round(window.innerWidth);
     if (x > 0) {
       x = 0;
@@ -110,12 +107,12 @@ export const RowGenres2 = (data) => {
     setScrollX(x);
   };
   const handleRightArrow = () => {
-    console.log('right');
     let x = scrollX - Math.round(window.innerWidth);
     const listW = media.length * 150;
     if (window.innerWidth - listW > x) {
       x = window.innerWidth - listW - 60;
     }
+
     setScrollX(x);
   };
   /* eslint-disable */
@@ -124,10 +121,10 @@ export const RowGenres2 = (data) => {
     <RowsStyle>
         <h3>{titleSection}</h3>
       <div className="movieRow-left" onClick={handleLeftArrow}>
-        <AiOutlineArrowLeft style={{ fontSize: 50 }} />
+        {scrollX==0? null:<FaChevronLeft style={{ fontSize: 50 }} /> }
       </div>
       <div className="movieRow-right" onClick={handleRightArrow}>
-        <AiOutlineArrowRight style={{ fontSize: 50 }} />
+      {scrollX<window.innerWidth - media.length * 150? null:<FaChevronRight style={{ fontSize: 50 }} /> }
       </div>
 
       <div className="movieRow--listarea">
