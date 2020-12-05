@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { AiOutlineSearch, AiOutlineGift, AiFillBell } from 'react-icons/ai';
@@ -6,6 +6,13 @@ import logoImg from '../assets/logo.png';
 import profileImg from '../assets/profile.png';
 
 const NavStyle = styled.nav`
+  --colorBgNav: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7) 10%,
+    rgba(0, 0, 0, 0)
+  );
+  --colorBgNav2Black: #141414;
+
   z-index: 10;
   position: fixed;
   right: 0;
@@ -13,14 +20,11 @@ const NavStyle = styled.nav`
 
   font-size: 1rem;
   padding: 0 4rem;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.7) 10%,
-    rgba(0, 0, 0, 0)
-  );
+  background: ${(props) => props.navBackground};
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: 0.5s;
   ul {
     display: flex;
     align-items: center;
@@ -54,58 +58,68 @@ const NavStyle = styled.nav`
   }
 `;
 
-export const Nav = () => (
-  <NavStyle>
-    <div className="primary-nav">
-      <img className="logo" src={logoImg} alt="Logo" />
+export const Nav = () => {
+  const [state, setState] = useState(0);
+  document.addEventListener('scroll', () => {
+    setState(window.scrollY);
+  });
+  return (
+    <NavStyle
+      navBackground={
+        state > 10 ? 'var(--colorBgNav2Black)' : 'var(--colorBgNav)'
+      }
+    >
+      <div className="primary-nav">
+        <img className="logo" src={logoImg} alt="Logo" />
 
-      <ul>
-        <li>
-          <NavLink exact to="/" activeClassName="nav-active">
-            Home
-          </NavLink>
-        </li>
+        <ul>
+          <li>
+            <NavLink exact to="/" activeClassName="nav-active">
+              Home
+            </NavLink>
+          </li>
 
-        <li>
-          <NavLink to="/tvshows" activeClassName="nav-active">
-            Tv Shows
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/movies" activeClassName="nav-active">
-            Movies
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/popular" activeClassName="nav-active">
-            New & Popular
-          </NavLink>
-        </li>
+          <li>
+            <NavLink to="/tvshows" activeClassName="nav-active">
+              Tv Shows
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/movies" activeClassName="nav-active">
+              Movies
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/popular" activeClassName="nav-active">
+              New & Popular
+            </NavLink>
+          </li>
 
-        <li>
-          <NavLink to="/mylist" activeClassName="nav-active">
-            My List
-          </NavLink>
-        </li>
-      </ul>
-    </div>
+          <li>
+            <NavLink to="/mylist" activeClassName="nav-active">
+              My List
+            </NavLink>
+          </li>
+        </ul>
+      </div>
 
-    <div className="secundary-nav">
-      <ul>
-        <li>
-          <AiOutlineSearch />
-        </li>
-        <li>
-          <AiOutlineGift />
-        </li>
-        <li>
-          <AiFillBell />
-        </li>
-        <li>KIDS</li>
-        <li>
-          <img className="logo-profile" src={profileImg} alt="Logo profile" />
-        </li>
-      </ul>
-    </div>
-  </NavStyle>
-);
+      <div className="secundary-nav">
+        <ul>
+          <li>
+            <AiOutlineSearch />
+          </li>
+          <li>
+            <AiOutlineGift />
+          </li>
+          <li>
+            <AiFillBell />
+          </li>
+          <li>KIDS</li>
+          <li>
+            <img className="logo-profile" src={profileImg} alt="Logo profile" />
+          </li>
+        </ul>
+      </div>
+    </NavStyle>
+  );
+};

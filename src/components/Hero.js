@@ -24,7 +24,7 @@ const HeroStyle = styled.div`
     z-index: 10;
     width: 40%;
     position: absolute;
-    top: 20%;
+    top: 25%;
     left: 2%;
     right: 0;
     bottom: 0;
