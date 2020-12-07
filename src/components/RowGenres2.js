@@ -4,66 +4,26 @@ import styled from 'styled-components';
 import axiosInstance from './helpers/axiosInstance';
 
 const RowsStyle = styled.article`
-  padding-left: 30px;
-  margin-bottom: 30px;
+  margin: 30px 0;
+  overflow: hidden;
+  padding: 0px 0 20px 30px;
+  position: relative;
 
-  .movieRow--listarea {
-    overflow-x: hidden;
-    transition: all 0.3s;
-    -webkit-animation: showGridCategorie 2.5s ease-in-out;
-    animation: showGridCategorie 2.5s ease-in-out;
+  h3 {
+    padding-bottom: 10px;
   }
 
-  .movieRow--list {
-    transition: all ease 0.2s;
-    transition: all 0.3s;
-    -webkit-animation: showGridCategorie 2.5s ease-in-out;
-    animation: showGridCategorie 2.5s ease-in-out;
+  .row-list {
+    transition: margin ease 0.2s;
+    position: relative;
+    white-space: nowrap;
   }
-
-  .movieRow--item {
-    display: inline-block;
-    width: 150px;
-    cursor: pointer;
-    transition: all 0.3s;
-    -webkit-animation: showGridCategorie 2.5s ease-in-out;
-    animation: showGridCategorie 2.5s ease-in-out;
-  }
-  @keyframes showGridCategorie {
-    from {
-      opacity: 0;
-      transform: translateX(-100%);
-    }
-
-    80% {
-      opacity: 0.5;
-      transform: translateX(5%);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateX(0%);
-    }
-  }
-
-  .movieRow--item img {
-    width: 100%;
-    transform: scale(0.9);
-    transition: all ease 0.2s;
-    transition: all 0.3s;
-    -webkit-animation: showGridCategorie 0.5s ease-in-out;
-    animation: showGridCategorie 0.5s ease-in-out;
-  }
-
-  .movieRow--item img:hover {
-    transform: scale(1);
-  }
-
-  .movieRow-left,
-  .movieRow-right {
+  .arrow-left,
+  .arrow-right {
     position: absolute;
+    top: 35px;
     width: 40px;
-    height: 225px;
+    height: 245px;
     background: linear-gradient(to right, #111 15%, transparent 90%);
     z-index: 999;
     display: flex;
@@ -72,20 +32,39 @@ const RowsStyle = styled.article`
     overflow: hidden;
     cursor: pointer;
     opacity: 0;
-    transition: all ease 0.2s;
+    transition: all ease 0.3s;
   }
 
-  .movieRow-left {
+  .row-item {
+    display: inline-block;
+    width: 160px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-right: 10px;
+  }
+
+  .row-item img {
+    width: 100%;
+    border-radius: 0.6rem;
+    transition: transform ease 0.3s;
+  }
+
+  .row-item img:hover {
+    transform: scale(1.25);
+  }
+
+  .arrow-left {
     left: 0;
   }
 
-  .movieRow-right {
+  .arrow-right {
     background: linear-gradient(to left, #111 15%, transparent 90%);
     right: 0;
   }
 
-  :hover .movieRow-left,
-  :hover .movieRow-right {
+  :hover .arrow-left,
+  :hover .arrow-right {
+    transform: scaleY(1.22);
     opacity: 1;
   }
 `;
@@ -108,7 +87,7 @@ export const RowGenres2 = (data) => {
   };
   const handleRightArrow = () => {
     let x = scrollX - Math.round(window.innerWidth);
-    const listW = media.length * 150;
+    const listW = media?.length * 170;
     if (window.innerWidth - listW > x) {
       x = window.innerWidth - listW - 60;
     }
@@ -119,31 +98,32 @@ export const RowGenres2 = (data) => {
 
   return (
     <RowsStyle>
-        <h3>{titleSection}</h3>
-      <div className="movieRow-left" onClick={handleLeftArrow}>
-        {scrollX==0? null:<FaChevronLeft style={{ fontSize: 50 }} /> }
-      </div>
-      <div className="movieRow-right" onClick={handleRightArrow}>
-      {scrollX<window.innerWidth - media.length * 150? null:<FaChevronRight style={{ fontSize: 50 }} /> }
-      </div>
+      <h3>{titleSection}</h3>
+     
 
-      <div className="movieRow--listarea">
-        <div
-          className="movieRow--list"
-          style={{
-            marginLeft :scrollX,
-            width: media?.length * 150
-          }}
-        >
-          {media?.map((item) => (
-            <div className="movieRow--item" key={item.id}>
-              <img
-                src={`https://image.tmdb.org/t/p/w154/${item.poster_path}`}
-                alt=""
-              />
-            </div>
-          ))}
-        </div>
+      <div
+        className="row-list"
+        style={{
+          marginLeft: scrollX,
+          // width: media?.length * 190,
+        }}
+      >
+        {media?.map((item) => (
+          <div className="row-item" key={item.id}>
+            <img
+              src={`https://image.tmdb.org/t/p/w154/${item.poster_path}`}
+              alt=""
+            />
+          </div>
+        ))}
+      </div>
+      <div className="arrow-left" onClick={handleLeftArrow}>
+        {scrollX == 0 ? null : <FaChevronLeft style={{ fontSize: 30 }} />}
+      </div>
+      <div className="arrow-right" onClick={handleRightArrow}>
+        {scrollX < window.innerWidth - media?.length * 160 ? null : (
+          <FaChevronRight style={{ fontSize: 30 }} />
+        )}
       </div>
     </RowsStyle>
   );

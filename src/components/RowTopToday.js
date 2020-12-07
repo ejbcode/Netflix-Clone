@@ -1,25 +1,60 @@
 import React, { useEffect, useState } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styled from 'styled-components';
 import axiosInstance from './helpers/axiosInstance';
 
 const RowsStyle = styled.article`
+  margin: 30px 0;
+  overflow: hidden;
+  padding: 0px 0 20px 30px;
   position: relative;
-  padding-left: 30px;
-  overflow-x: hidden;
-  overflow-y: hidden;
 
-  .movieRow--list {
+  .row-list {
+    transition: margin ease 0.2s;
+    position: relative;
     white-space: nowrap;
+  }
+
+  .arrow-left,
+  .arrow-right {
+    position: absolute;
+    top: 27px;
+    width: 40px;
+    height: 140px;
+    background: linear-gradient(to right, #111 15%, transparent 90%);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0;
+    transition: all ease 0.3s;
+  }
+
+  .arrow-left {
+    left: 0;
+  }
+
+  .arrow-right {
+    background: linear-gradient(to left, #111 15%, transparent 90%);
+    right: 0;
+  }
+
+  :hover .arrow-left,
+  :hover .arrow-right {
+    transform: scaleY(1.24);
+    opacity: 1;
   }
 `;
 
 const MovieItemStyle = styled.div`
   display: inline-block;
-
   cursor: pointer;
   position: relative;
   z-index: 100;
   margin-left: 90px;
+  transition: all ease 0.3s;
 
   :after {
     content: '${(props) => props.count}';
@@ -39,23 +74,47 @@ const MovieItemStyle = styled.div`
     border-radius: 1rem;
     border-radius: 0 1rem 1rem 0;
   }
+
+  :hover {
+    transform: scale(1.25);
+  }
 `;
 
 export const RowTopToday = (data) => {
   const [media, setMedia] = useState(null);
+  const [scrollX, setScrollX] = useState(0);
 
   const { titleSection, url } = data.data;
   useEffect(() => {
     axiosInstance(url).then((response) => setMedia(response.data.results));
   }, [url]);
   console.log(media);
+  const handleLeftArrow = () => {
+    let x = scrollX + Math.round(window.innerWidth);
+    if (x > 0) {
+      x = 0;
+    }
+    setScrollX(x);
+  };
+  const handleRightArrow = () => {
+    let x = scrollX - Math.round(window.innerWidth / 2);
+    const listW = media?.length * 170;
+    if (window.innerWidth - listW > x) {
+      x = window.innerWidth - listW - 60;
+    }
+
+    setScrollX(x);
+  };
+  /* eslint-disable */
+
   return (
     <RowsStyle>
       <h3>{titleSection}</h3>
       <div
-        className="movieRow--list"
+        className="row-list"
         style={{
-          marginLeft: 0,
+          marginLeft: scrollX,
+          // width: media?.length * 190,
         }}
       >
         {media?.slice(0, 9).map((item, count) => (
@@ -66,6 +125,14 @@ export const RowTopToday = (data) => {
             />
           </MovieItemStyle>
         ))}
+      </div>
+      <div className="arrow-left" onClick={handleLeftArrow}>
+        {scrollX == 0 ? null : <FaChevronLeft style={{ fontSize: 30 }} />}
+      </div>
+      <div className="arrow-right" onClick={handleRightArrow}>
+        {scrollX < window.innerWidth - media?.length * 100 ? null : (
+          <FaChevronRight style={{ fontSize: 30 }} />
+        )}
       </div>
     </RowsStyle>
   );

@@ -15,27 +15,27 @@ export const genresList = {
 
   action: {
     titleSection: 'Action',
-    url: '/discover/tv?&page=1&with_networks=28',
+    url: '/discover/movie?&page=1&with_genres=28',
   },
 
   horror: {
     titleSection: 'Horror',
-    url: '/discover/tv?&page=1&with_networks=27',
+    url: '/discover/movie?&page=1&with_genres=27',
   },
 
   comedy: {
     titleSection: 'Comedy',
-    url: '/discover/tv?&page=1&with_networks=35',
+    url: '/discover/movie?&page=1&with_genres=35',
   },
 
   romance: {
     titleSection: 'Romance',
-    url: '/discover/tv?&page=1&with_networks=10749',
+    url: '/discover/movie?&page=1&with_genres=10749',
   },
 
   documentary: {
     titleSection: 'Documentary',
-    url: '/discover/tv?&page=1&with_networks=213',
+    url: '/discover/movie?&page=1&with_genres=99',
   },
 
   netflix: {

@@ -19,3 +19,11 @@
 1. import store into app.js
 1. install axios
 1. config a axios client
+1. create genrelist with the params for the axios query
+1. create hero
+1. crate component rows action, top, horror, etc
+1. create multiple router
+1. create login
+1. install firebase
+1. config firebase Login with Google.
+1. create firebase folder, add the config for firebase
