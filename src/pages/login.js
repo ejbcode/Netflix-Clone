@@ -1,11 +1,16 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import loginBg from '../assets/loginBG.jpg';
 import logoImg from '../assets/logo.png';
 import logoGoogle from '../assets/logogoogle.png';
 import { useForm } from '../components/helpers/useForm';
-import { logWithGoogle } from '../components/redux/actions/authAction';
+import {
+  logout,
+  logoutFromFirebase,
+  logWithGoogle,
+  testx,
+} from '../components/redux/actions/authAction';
 
 const LoginStyle = styled.div`
   width: 100vw;
@@ -128,7 +133,8 @@ export const Login = () => {
   //   email: '',
   //   password: '',
   // });
-
+const {name} = useSelector(state => state.auth)
+console.log(name);
   const dispatch = useDispatch ();
 
   const handleGoogleClick =() => {
@@ -144,6 +150,7 @@ export const Login = () => {
         <img src={logoImg} alt="" />
       </div>
       <form className="login">
+      <h1>{name}</h1>
         <h2 className="title">Sign In</h2>
         <div className="group">
           <input
@@ -185,6 +192,7 @@ export const Login = () => {
         <p>
           New to Netflix? <span> Sign up now.</span>
         </p>
+        <button onClick={()=>dispatch(logoutFromFirebase())}>logout</button>
       </form>
     </LoginStyle>
   </>

@@ -24,6 +24,10 @@ export const logout = () => ({
   type: types.logout,
 });
 
+export const testx = () => ({
+  type: types.test,
+});
+
 export const logoutFromFirebase = () => async (dispatch) => {
   await firebase.auth().signOut();
 
