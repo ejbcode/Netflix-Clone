@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { firebase } from '../firebase/firebaseConfig';
 import GlobalStyle from '../GlobalStyle';
 
-import { who } from '../pages/who';
-import { MainRoute } from './MainRoute';
 import { Login } from '../pages/login';
 import { Register } from '../pages/register';
+import { Home } from '../pages/home';
+
 import { login } from '../components/redux/actions/authAction';
+import { PrivateRoute } from './PrivateRoute';
+import { Movies } from '../pages/movies';
+import { TvShows } from '../pages/tvShows';
+import { Nav } from '../components/Nav';
+import { PublicRoute } from './PublicRoute';
 
 const AppRoute = () => {
   const dispatch = useDispatch();
@@ -38,14 +43,49 @@ const AppRoute = () => {
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
-          <Route exact path="/who" component={who} />
+          <Route path="/app/:path?" exact>
+            <Nav />
+            <PrivateRoute
+              exact
+              path="/app"
+              component={Home}
+              isAuthenticated={isLoggedIn}
+            />
+            <PrivateRoute
+              exact
+              path="/app/movies"
+              component={Movies}
+              isAuthenticated={isLoggedIn}
+            />
+
+            <PrivateRoute
+              exact
+              path="/app/tvshows"
+              component={TvShows}
+              isAuthenticated={isLoggedIn}
+            />
+            <Redirect to="/app" />
+          </Route>
+
           <Route path="/auth/:path?" exact>
             <Switch>
-              <Route path="/auth" exact component={Login} />
-              <Route path="/auth/register" component={Register} />
+              <PublicRoute
+                exact
+                path="/auth/"
+                component={Login}
+                isAuthenticated={isLoggedIn}
+              />
+              <PublicRoute
+                exact
+                path="/auth/"
+                component={Register}
+                isAuthenticated={isLoggedIn}
+              />
+              <Redirect to="/auth" />
             </Switch>
           </Route>
-          <MainRoute />
+
+          <Redirect to="/app" />
         </Switch>
       </BrowserRouter>
     </div>

@@ -4,12 +4,9 @@ import styled from 'styled-components';
 import loginBg from '../assets/loginBG.jpg';
 import logoImg from '../assets/logo.png';
 import logoGoogle from '../assets/logogoogle.png';
-import { useForm } from '../components/helpers/useForm';
 import {
-  logout,
   logoutFromFirebase,
   logWithGoogle,
-  testx,
 } from '../components/redux/actions/authAction';
 
 const LoginStyle = styled.div`
@@ -133,67 +130,63 @@ export const Login = () => {
   //   email: '',
   //   password: '',
   // });
-const {name} = useSelector(state => state.auth)
-console.log(name);
-  const dispatch = useDispatch ();
+  const { name } = useSelector((state) => state.auth);
+  console.log(name);
+  const dispatch = useDispatch();
 
-  const handleGoogleClick =() => {
+  const handleGoogleClick = () => {
     dispatch(logWithGoogle());
+  };
 
-  }
-  
- 
-  return(
-  <>
-    <LoginStyle>
-      <div className="logo">
-        <img src={logoImg} alt="" />
-      </div>
-      <form className="login">
-      <h1>{name}</h1>
-        <h2 className="title">Sign In</h2>
-        <div className="group">
-          <input
-            id="email"
-            className="group__input"
-            type="text"
-            required
-          />
-          <label htmlFor="email" className="group__label">
-            Email or phone number
-          </label>
+  return (
+    <>
+      <LoginStyle>
+        <div className="logo">
+          <img src={logoImg} alt="" />
         </div>
-        <div className="group">
-          <input
-            className="group__input"
-            type="password"
-            required
-            id="password"
-          />
-          <label htmlFor="password" className="group__label">
-            Password
-          </label>
-        </div>
-        <button type="submit">Sign In</button>
-        <div className="cta">
-          <a className="cta__text" href="#">
-            Remember me
-          </a>
-          <a className="cta__text cta__text--need-help" href="#">
-            Need help?
-          </a>
-        </div>
-        <div className="cta">
-          <a className="cta__text" href="#" onClick={handleGoogleClick}>
-            <img className="logo-google" src={logoGoogle} alt="" />{' '}
-            <p> Login with Google</p>
-          </a>
-        </div>
-        <p>
-          New to Netflix? <span> Sign up now.</span>
-        </p>
-        <button onClick={()=>dispatch(logoutFromFirebase())}>logout</button>
-      </form>
-    </LoginStyle>
-  </>
-)};
+        <form className="login">
+          <h1>{name}</h1>
+          <h2 className="title">Sign In</h2>
+          <div className="group">
+            <input id="email" className="group__input" type="text" required />
+            <label htmlFor="email" className="group__label">
+              Email or phone number
+            </label>
+          </div>
+          <div className="group">
+            <input
+              className="group__input"
+              type="password"
+              required
+              id="password"
+            />
+            <label htmlFor="password" className="group__label">
+              Password
+            </label>
+          </div>
+          <button type="submit">Sign In</button>
+          <div className="cta">
+            <a className="cta__text" href="#">
+              Remember me
+            </a>
+            <a className="cta__text cta__text--need-help" href="#">
+              Need help?
+            </a>
+          </div>
+          <div className="cta">
+            <a className="cta__text" href="#" onClick={handleGoogleClick}>
+              <img className="logo-google" src={logoGoogle} alt="" />{' '}
+              <p> Login with Google</p>
+            </a>
+          </div>
+          <p>
+            New to Netflix?
+            <span>
+              <Link>Sign up now. </Link>
+            </span>
+          </p>
+        </form>
+      </LoginStyle>
+    </>
+  );
+};

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { AiOutlineSearch, AiOutlineGift, AiFillBell } from 'react-icons/ai';
+import { useDispatch } from 'react-redux';
 import logoImg from '../assets/logo.png';
 import profileImg from '../assets/profile.png';
+import { logoutFromFirebase } from './redux/actions/authAction';
 
 const NavStyle = styled.nav`
   --colorBgNav: linear-gradient(
@@ -59,6 +61,7 @@ const NavStyle = styled.nav`
 `;
 
 export const Nav = () => {
+  const dispatch = useDispatch();
   const [state, setState] = useState(0);
   document.addEventListener('scroll', () => {
     setState(window.scrollY);
@@ -118,6 +121,7 @@ export const Nav = () => {
           <li>
             <img className="logo-profile" src={profileImg} alt="Logo profile" />
           </li>
+          <button onClick={() => dispatch(logoutFromFirebase())} />
         </ul>
       </div>
     </NavStyle>
