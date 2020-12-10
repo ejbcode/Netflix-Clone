@@ -64,7 +64,7 @@ const AppRoute = () => {
               component={TvShows}
               isAuthenticated={isLoggedIn}
             />
-            <Redirect to="/app" />
+            <Redirect to={isLoggedIn ? '/app' : '/auth'} />
           </Route>
 
           <Route path="/auth/:path?" exact>
@@ -77,7 +77,7 @@ const AppRoute = () => {
               />
               <PublicRoute
                 exact
-                path="/auth/"
+                path="/auth/register"
                 component={Register}
                 isAuthenticated={isLoggedIn}
               />
