@@ -88,7 +88,6 @@ export const RowTopToday = (data) => {
   useEffect(() => {
     axiosInstance(url).then((response) => setMedia(response.data.results));
   }, [url]);
-  console.log(media);
   const handleLeftArrow = () => {
     let x = scrollX + Math.round(window.innerWidth);
     if (x > 0) {

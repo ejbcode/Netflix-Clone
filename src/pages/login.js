@@ -1,13 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import loginBg from '../assets/loginBG.jpg';
 import logoImg from '../assets/logo.png';
 import logoGoogle from '../assets/logogoogle.png';
-import {
-  logoutFromFirebase,
-  logWithGoogle,
-} from '../components/redux/actions/authAction';
+import { logWithGoogle } from '../components/redux/actions/authAction';
 
 const LoginStyle = styled.div`
   width: 100vw;
@@ -121,6 +119,10 @@ const LoginStyle = styled.div`
   span {
     font-weight: 700;
   }
+
+  a {
+    color: white;
+  }
 `;
 
 /* eslint-disable */
@@ -131,12 +133,15 @@ export const Login = () => {
   //   password: '',
   // });
   const { name } = useSelector((state) => state.auth);
-  console.log(name);
   const dispatch = useDispatch();
 
   const handleGoogleClick = () => {
     dispatch(logWithGoogle());
   };
+
+  const handleSubmit = (event) => {
+event.preventDefault()
+  }
 
   return (
     <>
@@ -144,7 +149,7 @@ export const Login = () => {
         <div className="logo">
           <img src={logoImg} alt="" />
         </div>
-        <form className="login">
+        <form className="login" onSubmit={handleSubmit}>
           <h1>{name}</h1>
           <h2 className="title">Sign In</h2>
           <div className="group">
@@ -182,7 +187,7 @@ export const Login = () => {
           <p>
             New to Netflix?
             <span>
-              <Link>Sign up now. </Link>
+              <Link to="/auth/register"> Sign up now. </Link>
             </span>
           </p>
         </form>

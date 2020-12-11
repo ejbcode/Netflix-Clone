@@ -30,7 +30,6 @@ export const RowGenres = (data) => {
   useEffect(() => {
     axiosInstance(url).then((response) => setMedia(response.data.results));
   }, [url]);
-  console.log(media);
   return (
     <RowsStyle>
       <h3>{titleSection}</h3>

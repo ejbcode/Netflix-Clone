@@ -77,29 +77,29 @@ export const Nav = () => {
 
         <ul>
           <li>
-            <NavLink exact to="/" activeClassName="nav-active">
+            <NavLink exact to="/app/" activeClassName="nav-active">
               Home
             </NavLink>
           </li>
 
           <li>
-            <NavLink to="/tvshows" activeClassName="nav-active">
+            <NavLink to="/app/tvshows" activeClassName="nav-active">
               Tv Shows
             </NavLink>
           </li>
           <li>
-            <NavLink to="/movies" activeClassName="nav-active">
+            <NavLink to="/app/movies" activeClassName="nav-active">
               Movies
             </NavLink>
           </li>
           <li>
-            <NavLink to="/popular" activeClassName="nav-active">
+            <NavLink to="/app/popular" activeClassName="nav-active">
               New & Popular
             </NavLink>
           </li>
 
           <li>
-            <NavLink to="/mylist" activeClassName="nav-active">
+            <NavLink to="/app/mylist" activeClassName="nav-active">
               My List
             </NavLink>
           </li>
@@ -121,7 +121,11 @@ export const Nav = () => {
           <li>
             <img className="logo-profile" src={profileImg} alt="Logo profile" />
           </li>
-          <button onClick={() => dispatch(logoutFromFirebase())} />
+          <button
+            type="button"
+            aria-label="save"
+            onClick={() => dispatch(logoutFromFirebase())}
+          />
         </ul>
       </div>
     </NavStyle>

@@ -1,13 +1,12 @@
 import { types } from '../types';
 
-const initialState = { log: true };
+const initialState = {};
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.login:
-      console.log('login');
-
       return {
+        redirectToWho: true,
         uid: action.payload.uid,
         name: action.payload.displayName,
       };
