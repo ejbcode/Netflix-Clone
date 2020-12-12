@@ -12,6 +12,7 @@ export const Home = () => {
   const history = useHistory();
   if (redirectToWho) {
     history.push('/app/who');
+    return <p>fd</p>;
   }
   return (
     <div>

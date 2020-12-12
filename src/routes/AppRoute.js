@@ -14,6 +14,7 @@ import { Movies } from '../pages/movies';
 import { TvShows } from '../pages/tvShows';
 import { Nav } from '../components/Nav';
 import { PublicRoute } from './PublicRoute';
+import { Who } from '../pages/who';
 
 const AppRoute = () => {
   const dispatch = useDispatch();
@@ -62,6 +63,13 @@ const AppRoute = () => {
               exact
               path="/app/tvshows"
               component={TvShows}
+              isAuthenticated={isLoggedIn}
+            />
+
+            <PrivateRoute
+              exact
+              path="/app/who"
+              component={Who}
               isAuthenticated={isLoggedIn}
             />
             <Redirect to={isLoggedIn ? '/app' : '/auth'} />
