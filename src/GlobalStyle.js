@@ -26,6 +26,8 @@ const GlobalStyle = createGlobalStyle`${css`
     scroll-behavior: smooth;
     color: var(--colorTxt);
     transition: all 0.2s linear;
+    max-width: 1900px;
+    margin: 0 auto;
   }
 
   body {

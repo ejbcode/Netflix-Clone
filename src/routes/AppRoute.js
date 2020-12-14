@@ -7,6 +7,7 @@ import GlobalStyle from '../GlobalStyle';
 import { Login } from '../pages/login';
 import { Register } from '../pages/register';
 import { Home } from '../pages/home';
+import { Who } from '../pages/who';
 
 import { login } from '../components/redux/actions/authAction';
 import { PrivateRoute } from './PrivateRoute';
@@ -14,7 +15,8 @@ import { Movies } from '../pages/movies';
 import { TvShows } from '../pages/tvShows';
 import { Nav } from '../components/Nav';
 import { PublicRoute } from './PublicRoute';
-import { Who } from '../pages/who';
+import { MyList } from '../pages/myList';
+import { Popular } from '../pages/popular';
 
 const AppRoute = () => {
   const dispatch = useDispatch();
@@ -44,37 +46,6 @@ const AppRoute = () => {
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
-          <Route path="/app/:path?" exact>
-            <Nav />
-            <PrivateRoute
-              exact
-              path="/app"
-              component={Home}
-              isAuthenticated={isLoggedIn}
-            />
-            <PrivateRoute
-              exact
-              path="/app/movies"
-              component={Movies}
-              isAuthenticated={isLoggedIn}
-            />
-
-            <PrivateRoute
-              exact
-              path="/app/tvshows"
-              component={TvShows}
-              isAuthenticated={isLoggedIn}
-            />
-
-            <PrivateRoute
-              exact
-              path="/app/who"
-              component={Who}
-              isAuthenticated={isLoggedIn}
-            />
-            <Redirect to={isLoggedIn ? '/app' : '/auth'} />
-          </Route>
-
           <Route path="/auth/:path?" exact>
             <Switch>
               <PublicRoute
@@ -83,6 +54,8 @@ const AppRoute = () => {
                 component={Login}
                 isAuthenticated={isLoggedIn}
               />
+              <Redirect to={isLoggedIn ? '/app' : '/auth'} />
+
               <PublicRoute
                 exact
                 path="/auth/register"
@@ -90,6 +63,47 @@ const AppRoute = () => {
                 isAuthenticated={isLoggedIn}
               />
               <Redirect to="/auth" />
+            </Switch>
+          </Route>
+          <Route>
+            <Nav />
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/"
+                component={Home}
+                isAuthenticated={isLoggedIn}
+              />
+              <PrivateRoute
+                exact
+                path="/movies"
+                component={Movies}
+                isAuthenticated={isLoggedIn}
+              />
+              <PrivateRoute
+                exact
+                path="/tvshows"
+                component={TvShows}
+                isAuthenticated={isLoggedIn}
+              />
+              <PrivateRoute
+                exact
+                path="/popular"
+                component={Popular}
+                isAuthenticated={isLoggedIn}
+              />{' '}
+              <PrivateRoute
+                exact
+                path="/mylist"
+                component={MyList}
+                isAuthenticated={isLoggedIn}
+              />
+              <PrivateRoute
+                exact
+                path="/who"
+                component={Who}
+                isAuthenticated={isLoggedIn}
+              />
             </Switch>
           </Route>
 

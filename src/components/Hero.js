@@ -109,7 +109,6 @@ export const Hero = (data) => {
       <div className="wrapper">
         <div className="image-wrapper">
           <img src={bg} alt="" />
-          ss
         </div>
         <div className="description">
           <h2>{title}</h2>

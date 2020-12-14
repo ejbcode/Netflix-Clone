@@ -9,6 +9,11 @@ export const login = (uid, displayName) => ({
   },
 });
 
+export const setProfile = (id) => ({
+  type: types.setProfile,
+  payload: id,
+});
+
 export const logWithGoogle = () => (dispatch) => {
   firebase
     .auth()

@@ -1,21 +1,21 @@
 import { types } from '../types';
 
-const initialState = {};
+const initialState = { profile: { id: 1, fullName: 'Ernesto' } };
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.login:
+      console.log(state);
       return {
-        redirectToWho: true,
+        ...state,
         uid: action.payload.uid,
         name: action.payload.displayName,
       };
 
-    case types.test:
-      console.log('test reducer');
+    case types.setProfile:
       return {
         ...state,
-        log: false,
+        profile: action.payload,
       };
 
     case types.logout:

@@ -1,8 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../assets/logo.png';
-import avatar from '../assets/profile.png';
+import { ProfileRow } from '../components/ProfileRow';
+import { setProfile } from '../components/redux/actions/authAction';
+import { profiles } from './profiles';
 
 const WhoStyle = styled.div`
   background: #141414;
@@ -11,42 +14,82 @@ const WhoStyle = styled.div`
   height: 100vh;
 `;
 
-const NavLogo = styled.nav``;
+const NavLogo = styled.nav`
+  margin: 2rem;
+`;
 const WhoRow = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: red solid 1px;
   width: 100%;
+  text-align: center;
+
   h1 {
-    text-align: center;
     margin-bottom: 2rem;
+  }
+
+  .profile-row {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+    min-width: 280px;
+
+    p {
+      margin: 0;
+    }
+
+    li {
+      width: 80px;
+      margin: 0 10px 2rem 10px;
+      color: gray;
+      cursor: pointer;
+
+      :hover img {
+        outline: 4px solid lightgray;
+        outline-offset: -4px;
+      }
+      :hover p {
+        color: white;
+      }
+    }
+    img {
+      border-radius: 0.4rem;
+      overflow: hidden;
+    }
+    @media screen and (min-width: 480px) {
+      li {
+        width: 130px;
+      }
+    }
   }
 `;
 
-const RowStyle = styled.ul`
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  max-width: 800px;
-  min-width: 180px;
-
-  border: red solid 1px;
-
-  li {
-    max-width: 100px;
-    min-width: 80px;
-  }
-  img {
-    border-radius: 0.4rem;
+const ButtonStyle = styled.button`
+  --ccc: lightgray;
+  color: var(--ccc);
+  margin-top: 3rem;
+  text-align: center;
+  background: transparent;
+  border: 1px solid var(--ccc);
+  padding: 0.9rem 2.3rem;
+  border-radius: initial;
+  :hover {
+    --ccc: white;
   }
 `;
 
 export const Who = () => {
+  const history = useHistory();
+
   const { name } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const handleClick = (item) => {
+    dispatch(setProfile(item));
+    history.push('/');
+  };
   return (
     <WhoStyle>
       <NavLogo>
@@ -54,31 +97,10 @@ export const Who = () => {
       </NavLogo>
       <WhoRow>
         <h1>Who´s watching?</h1>
-        <RowStyle>
-          <li>
-            <div>
-              <img src={avatar} alt="logo avatar" />
-              <p>{name}</p>
-            </div>
-          </li>
-          <li>
-            <img src={avatar} alt="logo avatar" />
-            <p>{name}</p>
-          </li>
-          <li>
-            <img src={avatar} alt="logo avatar" />
-            <p>{name}</p>
-          </li>
-          <li>
-            <img src={avatar} alt="logo avatar" />
-            <p>{name}</p>
-          </li>
-          <li>
-            <img src={avatar} alt="logo avatar" />
-            <p>{name}</p>
-          </li>
-        </RowStyle>
-        <button type="submit">MANAGE PROFILE</button>
+        <ul>
+          <ProfileRow />
+        </ul>
+        <ButtonStyle type="submit">MANAGE PROFILES</ButtonStyle>
       </WhoRow>
     </WhoStyle>
   );
