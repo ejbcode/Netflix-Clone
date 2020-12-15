@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-  AiOutlineSearch,
-  AiOutlineGift,
-  AiFillBell,
-  AiOutlineDown,
-} from 'react-icons/ai';
+import { AiOutlineSearch } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 import logoImg from '../assets/logo.png';
 import { logoutFromFirebase } from './redux/actions/authAction';

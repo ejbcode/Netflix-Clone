@@ -89,7 +89,7 @@ const HeroStyle = styled.div`
 `;
 
 export const Hero = (data) => {
-  const { titleSection, url } = data.data;
+  const { url } = data.data;
   const [media, setMedia] = useState(null);
 
   useEffect(() => {

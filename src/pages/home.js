@@ -1,20 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+
 import { genresList } from '../components/genresList';
 import { Hero } from '../components/Hero';
 import { RowGenres2 } from '../components/RowGenres2';
 import { RowTopToday } from '../components/RowTopToday';
 
 export const Home = () => (
-  // const { redirectToWho } = useSelector((state) => state.auth);
-  // console.log(redirectToWho);
-  // const history = useHistory();
-  // // if (redirectToWho === true) {
-  // //   history.push('/app/who');
-  // //   return <p>fd</p>;
-  // // }
-
   <div>
     <h2>Home</h2>
     <Hero data={genresList.heroAll} />

@@ -1,11 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../assets/logo.png';
 import { ProfileRow } from '../components/ProfileRow';
 import { setProfile } from '../components/redux/actions/authAction';
-import { profiles } from './profiles';
 
 const WhoStyle = styled.div`
   background: #141414;
@@ -81,27 +80,17 @@ const ButtonStyle = styled.button`
   }
 `;
 
-export const Who = () => {
-  const history = useHistory();
-
-  const { name } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
-  const handleClick = (item) => {
-    dispatch(setProfile(item));
-    history.push('/');
-  };
-  return (
-    <WhoStyle>
-      <NavLogo>
-        <img src={logo} alt="logo" />
-      </NavLogo>
-      <WhoRow>
-        <h1>Who´s watching?</h1>
-        <ul>
-          <ProfileRow />
-        </ul>
-        <ButtonStyle type="submit">MANAGE PROFILES</ButtonStyle>
-      </WhoRow>
-    </WhoStyle>
-  );
-};
+export const Who = () => (
+  <WhoStyle>
+    <NavLogo>
+      <img src={logo} alt="logo" />
+    </NavLogo>
+    <WhoRow>
+      <h1>Who´s watching?</h1>
+      <ul>
+        <ProfileRow />
+      </ul>
+      <ButtonStyle type="submit">MANAGE PROFILES</ButtonStyle>
+    </WhoRow>
+  </WhoStyle>
+);

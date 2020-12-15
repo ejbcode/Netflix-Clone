@@ -209,6 +209,8 @@ export const Register = () => {
               type="password2"
               required
               id="password2"
+              value={password2}
+
             />
             <label htmlFor="password2" className="group__label">
               Password

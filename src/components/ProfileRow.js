@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { profiles } from '../pages/profiles';
+import { profiles } from './profiles';
 import { setProfile } from './redux/actions/authAction';
 
 const ProfileRowStyle = styled.div``;
@@ -35,7 +35,7 @@ export const ProfileRow = () => {
             <div className="image-wrapper">
               <img src={`../assets/avatar${item.id}.png`} alt="logo avatar" />
             </div>
-            <p>{item.fullName}</p>
+            <p>{name}</p>
           </li>
         </div>
       ))}
