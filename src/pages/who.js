@@ -1,10 +1,7 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../assets/logo.png';
 import { ProfileRow } from '../components/ProfileRow';
-import { setProfile } from '../components/redux/actions/authAction';
 
 const WhoStyle = styled.div`
   background: #141414;
