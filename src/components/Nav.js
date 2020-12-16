@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import logoImg from '../assets/logo.png';
 import { logoutFromFirebase } from './redux/actions/authAction';
 import { ProfileRow } from './ProfileRow';
+import { SearchInput } from './SearchInput';
 
 const NavStyle = styled.nav`
   display: flex;
@@ -165,7 +166,7 @@ export const Nav = () => {
       <div className="secundary-nav">
         <ul className="secundary-nav-list">
           <li>
-            <AiOutlineSearch />
+            <SearchInput />
           </li>
           {/* <li>
             <AiOutlineGift />
