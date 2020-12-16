@@ -17,6 +17,7 @@ import { Nav } from '../components/Nav';
 import { PublicRoute } from './PublicRoute';
 import { MyList } from '../pages/myList';
 import { Popular } from '../pages/popular';
+import { Search } from '../pages/search';
 
 const AppRoute = () => {
   const dispatch = useDispatch();
@@ -54,7 +55,6 @@ const AppRoute = () => {
                 component={Login}
                 isAuthenticated={isLoggedIn}
               />
-              <Redirect to={isLoggedIn ? '/app' : '/auth'} />
 
               <PublicRoute
                 exact
@@ -102,6 +102,12 @@ const AppRoute = () => {
                 exact
                 path="/who"
                 component={Who}
+                isAuthenticated={isLoggedIn}
+              />
+              <PrivateRoute
+                exact
+                path="/search"
+                component={Search}
                 isAuthenticated={isLoggedIn}
               />
             </Switch>

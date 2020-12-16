@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { AiOutlineClose, AiOutlineSearch } from 'react-icons/ai';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useForm } from './helpers/useForm';
 
@@ -45,45 +46,76 @@ const FormStyle = styled.form`
     .xtimes {
       font-size: 2rem;
       width: 18px;
+      right: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      position: absolute;
+    }
+
+    .xtimes-active {
+      font-size: 2rem;
+      width: 18px;
       right: 8px;
       top: 50%;
       transform: translateY(-50%);
       position: absolute;
+      pointer-events: initial;
     }
   }
 `;
 
 export const SearchInput = () => {
+  const history = useHistory();
+
   const [openSearch, setOpenSearch] = useState(false);
+
+  const searchInput = useRef(null);
 
   const handleClick = () => {
     setOpenSearch(!openSearch);
+    searchInput.current.focus();
   };
 
   const { formValues, handleInputChange, handleInputReset } = useForm({
     search: '',
   });
+  const { search } = formValues;
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // if (history.location.pathname !== '/search') {
+    //   history.push(`/search?q=${search}`);
+    // }
+    history.push(`/search?q=${search}`);
+  };
 
   return (
-    <FormStyle>
+    <FormStyle onSubmit={handleSubmit}>
       <div
         className="search"
         onClick={handleClick}
         aria-hidden="true"
         role="button"
-        tabIndex="0"
       >
+        {/* eslint-disable */}
         <input
           name="search"
+          aria-hidden="true"
           className={`input ${openSearch ? 'active' : ''}`}
           type="text"
           placeholder="Titles, people, genres"
           value={search}
           onChange={handleInputChange}
+          tabIndex="0"
+          autoFocus
+          ref={searchInput} 
         />
 
         <AiOutlineSearch className="icon" />
-        <AiOutlineClose className="xtimes" onClick={handleInputReset} />
+        <AiOutlineClose
+          className={`xtimes ${openSearch ? 'xtimes-active' : ''}`}
+          onClick={handleInputReset}
+        />
       </div>
     </FormStyle>
   );
