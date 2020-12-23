@@ -5,7 +5,6 @@ const initialState = { profile: { id: 1, fullName: 'Ernesto' } };
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.login:
-      console.log(state);
       return {
         ...state,
         uid: action.payload.uid,

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import axiosInstance from './helpers/axiosInstance';
+import MediaDetail from './MediaDetail';
+import { showDetail } from './redux/actions/mediaAction';
 
 const RowsStyle = styled.article`
+  position: relative;
   margin: 30px 0;
   overflow: hidden;
   padding: 0px 0 20px 30px;
-  position: relative;
 
   h3 {
     padding-bottom: 10px;
@@ -73,6 +75,9 @@ const RowsStyle = styled.article`
 export const RowGenres2 = (data) => {
   const [media, setMedia] = useState(null);
   const [scrollX, setScrollX] = useState(0);
+  // const [isModalOpened, setIsModalOpened] = useState(false);
+  const dispatch = useDispatch();
+  const { id, isModalOpened } = useSelector((state) => state.media);
 
   const { titleSection, url } = data.data;
   useEffect(() => {
@@ -96,6 +101,11 @@ export const RowGenres2 = (data) => {
     setScrollX(x);
   };
 
+  const handleClick = (event, value) => {
+    event.preventDefault();
+    dispatch(showDetail(value));
+  };
+
   return (
     <RowsStyle>
       <h3>{titleSection}</h3>
@@ -108,16 +118,17 @@ export const RowGenres2 = (data) => {
         }}
       >
         {media?.map((item) => (
-          <div className="row-item" key={item.id} aria-hidden="true">
-            <Link to={`/media/${item.id}`}>
+          <div className="row-item" key={item.id} aria-hidden>
+            <div onClick={(event) => handleClick(event, item.id)} aria-hidden>
               <img
                 src={`https://image.tmdb.org/t/p/w154/${item.poster_path}`}
                 alt="movie poster"
               />
-            </Link>
+            </div>
           </div>
         ))}
       </div>
+
       <div className="arrow-left" onClick={handleLeftArrow} aria-hidden="true">
         {scrollX === 0 ? null : <FaChevronLeft style={{ fontSize: 30 }} />}
       </div>

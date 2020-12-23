@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import axiosInstance from './helpers/axiosInstance';
+import MediaDetail from './MediaDetail';
+import { showDetail } from './redux/actions/mediaAction';
 
 const HeroStyle = styled.div`
   position: relative;
@@ -12,7 +15,7 @@ const HeroStyle = styled.div`
   bottom: 0;
   width: 100%;
   z-index: 0;
-  margin-bottom: -20px;
+  margin-bottom: -6rem;
 
   .wrapper {
     position: relative;
@@ -59,6 +62,9 @@ const HeroStyle = styled.div`
 
   .buttons {
     margin-top: 2rem;
+    display: flex;
+    position: relative;
+    align-items: center;
   }
 
   .button-play,
@@ -91,19 +97,23 @@ const HeroStyle = styled.div`
 export const Hero = (data) => {
   const { url } = data.data;
   const [media, setMedia] = useState(null);
+  const [randomMedia, setRandomMedia] = useState(1);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axiosInstance(url).then((response) => setMedia(response.data.results));
+    setRandomMedia(Math.floor(Math.random() * 20));
   }, [url]);
+  console.log(media);
 
-  const randowMedia = Math.floor(Math.random() * 20);
   /* eslint-disable */
-  const { backdrop_path, title, name, overview } = !!media && media[randowMedia];
+  const { backdrop_path, title, name, overview, id } = !!media && media[randomMedia];
 
   const bg = `https://image.tmdb.org/t/p/original/${backdrop_path}`;
-  {
+  
     /* eslint-enable */
-  }
+ 
+
   return (
     <HeroStyle bg={bg}>
       <div className="wrapper">
@@ -113,13 +123,13 @@ export const Hero = (data) => {
         <div className="description">
           <h2>{title}</h2>
           <p>{overview?.slice(0, 200)}</p>
-          <div className="buttons">
-            <a href="/" className="button-play">
-              ► Play
-            </a>
-            <a href="/" className="button-more">
-              + More Info
-            </a>
+          <div
+            className="buttons"
+            onClick={() => dispatch(showDetail(id))}
+            aria-hidden
+          >
+            <div className="button-play">► Play</div>
+            <div className="button-more">+ More Info</div>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 export const genresList = {
   heroAll: {
     titleSection: 'Hero All',
-    url: '/trending/all/week',
+    url: '/trending/movie/week',
   },
 
   topPopular: {
@@ -42,6 +42,8 @@ export const genresList = {
     titleSection: 'Netflix Originals',
     url: '/discover/tv?&page=1&with_networks=213',
   },
+/* eslint-disable */
+
 };
 export default genresList;
 // {

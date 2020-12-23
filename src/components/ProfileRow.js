@@ -12,7 +12,6 @@ export const ProfileRow = () => {
 
   const { name } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  console.log(history.location.pathname);
 
   const handleClick = (item) => {
     dispatch(setProfile(item));

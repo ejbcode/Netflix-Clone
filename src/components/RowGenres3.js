@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import axiosInstance from './helpers/axiosInstance';
+import { showMedia } from './redux/actions/mediaAction';
 
 const RowsStyle = styled.article`
   margin: 30px 0;
@@ -71,6 +72,11 @@ const RowsStyle = styled.article`
 `;
 
 export const RowGenres2 = (data) => {
+  const dispatch = useDispatch();
+  const openModal = (event) => {
+    event.preventDefault();
+    dispatch(showMedia());
+  };
   const [media, setMedia] = useState(null);
   const [scrollX, setScrollX] = useState(0);
 
@@ -109,12 +115,12 @@ export const RowGenres2 = (data) => {
       >
         {media?.map((item) => (
           <div className="row-item" key={item.id} aria-hidden="true">
-            <Link to={`/media/${item.id}`}>
+            <div onClick={openModal} aria-hidden="true">
               <img
                 src={`https://image.tmdb.org/t/p/w154/${item.poster_path}`}
                 alt="movie poster"
               />
-            </Link>
+            </div>
           </div>
         ))}
       </div>
