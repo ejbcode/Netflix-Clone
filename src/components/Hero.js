@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import axiosInstance from './helpers/axiosInstance';
-import MediaDetail from './MediaDetail';
 import { showDetail } from './redux/actions/mediaAction';
 
 const HeroStyle = styled.div`

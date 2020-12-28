@@ -179,7 +179,7 @@ export const Register = () => {
     event.preventDefault();
     if (isFormValid()) {
       console.log('yeah');
-      // dispatch(sigInWithEmailPasswordName(name, email, password));
+      dispatch(sigInWithEmailPasswordName(name, email, password));
     }
   };
 
