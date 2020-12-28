@@ -31,6 +31,8 @@ const GlobalStyle = createGlobalStyle`${css`
   }
 
   body {
+    background: var(--colorBg);
+
     font-family: 'Open Sans', cursive;
     line-height: 1.5;
     font-size: 1.6rem;

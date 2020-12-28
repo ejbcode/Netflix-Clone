@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const LoaderStyle = styled.div`
   position: relative;
   height: 100vh;
-  /* background: rgba(0, 0, 0, 0.3); */
-  background: transparent;
+  background: rgba(0, 0, 0, 0.5);
+
   z-index: 1000000;
   pointer-events: none;
   .nfLoader {

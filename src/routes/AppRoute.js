@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { firebase } from '../firebase/firebaseConfig';
 import GlobalStyle from '../GlobalStyle';
 
@@ -18,6 +18,7 @@ import { PublicRoute } from './PublicRoute';
 import { MyList } from '../pages/myList';
 import { Popular } from '../pages/popular';
 import { Search } from '../pages/search';
+import Loader from '../components/Loader';
 
 const AppRoute = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,12 @@ const AppRoute = () => {
   }, [dispatch, setChecking, setIsLoggedIn]);
 
   if (checking) {
-    return <h1>Wait...</h1>;
+    return (
+      <>
+        <GlobalStyle />
+        <Loader />
+      </>
+    );
   }
 
   return (

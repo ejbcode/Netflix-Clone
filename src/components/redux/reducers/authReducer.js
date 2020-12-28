@@ -1,6 +1,10 @@
 import { types } from '../types';
 
-const initialState = { profile: { id: 1, fullName: 'Ernesto' } };
+const initialState = {
+  loading: false,
+  errorMessage: null,
+  profile: { id: 1, fullName: 'Ernesto' },
+};
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -19,6 +23,12 @@ export const authReducer = (state = initialState, action) => {
 
     case types.logout:
       return {};
+
+    case types.setErrorMessage:
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
 
     default:
       return state;

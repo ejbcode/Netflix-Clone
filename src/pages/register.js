@@ -1,13 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { isEmail } from 'validator';
 import loginBg from '../assets/loginBG.jpg';
 import logoImg from '../assets/logo.png';
 import logoGoogle from '../assets/logogoogle.png';
 import { useForm } from '../components/helpers/useForm';
 import {
   logWithGoogle,
+  setErrorMessage,
   sigInWithEmailPasswordName,
 } from '../components/redux/actions/authAction';
 
@@ -127,29 +129,60 @@ const LoginStyle = styled.div`
   a {
     color: white;
   }
+
+  .error-message {
+    color: orange;
+  }
 `;
 
 // /* eslint-disable */
 
 export const Register = () => {
+  const dispatch = useDispatch();
+  const { errorMessage } = useSelector((state) => state.auth);
   const { formValues, handleInputChange } = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password2: '',
+    name: 'jose bermudez',
+    email: 'josebermudez@gmail.com',
+    password: '12345678',
+    password2: '12345678',
   });
 
   const { name, email, password, password2 } = formValues;
-  const dispatch = useDispatch();
 
   const handleGoogleClick = () => {
     dispatch(logWithGoogle());
   };
 
+  const isFormValid = () => {
+    if (name.trim().length === 0) {
+      dispatch(setErrorMessage('Name is required'));
+      return false;
+    }
+    if (!isEmail(email)) {
+      dispatch(setErrorMessage('This not a valid Email'));
+      return false;
+    }
+    if (password.length < 5) {
+      dispatch(setErrorMessage('Password should have at least 6 digits'));
+      return false;
+    }
+    if (password !== password2) {
+      dispatch(setErrorMessage('Password confirmation does not match'));
+      return false;
+    }
+    dispatch(setErrorMessage(null));
+
+    return true;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(sigInWithEmailPasswordName(name, email, password));
+    if (isFormValid()) {
+      console.log('yeah');
+      // dispatch(sigInWithEmailPasswordName(name, email, password));
+    }
   };
+
   /* eslint-disable */
 
   return (
@@ -209,13 +242,15 @@ export const Register = () => {
               type="password2"
               required
               id="password2"
+              name="password2"
               value={password2}
-
+              onChange={handleInputChange}
             />
             <label htmlFor="password2" className="group__label">
               Password
             </label>
           </div>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button type="submit">Sign up</button>
           <div className="cta">
             <a className="cta__text" href="#">

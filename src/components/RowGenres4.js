@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import axiosInstance from './helpers/axiosInstance';
-import MediaDetail from './MediaDetail';
 import { showDetail } from './redux/actions/mediaAction';
 
 const RowsStyle = styled.article`
@@ -75,9 +74,7 @@ const RowsStyle = styled.article`
 export const RowGenres2 = (data) => {
   const [media, setMedia] = useState(null);
   const [scrollX, setScrollX] = useState(0);
-  // const [isModalOpened, setIsModalOpened] = useState(false);
   const dispatch = useDispatch();
-  const { id, isModalOpened } = useSelector((state) => state.media);
 
   const { titleSection, url } = data.data;
   useEffect(() => {

@@ -42,8 +42,9 @@ export const logout = () => ({
   type: types.logout,
 });
 
-export const testx = () => ({
-  type: types.test,
+export const setErrorMessage = (errorMessage) => ({
+  type: types.setErrorMessage,
+  payload: errorMessage,
 });
 
 export const logoutFromFirebase = () => async (dispatch) => {

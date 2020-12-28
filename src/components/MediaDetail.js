@@ -189,7 +189,7 @@ const MediaDetail = ({ id }) => {
   }, [url]);
   console.log(media);
   if (!media) {
-    return <p>Loading</p>;
+    return <Loader />;
   }
 
   const handleVideoClick = (videoId) => {
@@ -201,7 +201,6 @@ const MediaDetail = ({ id }) => {
   };
   return (
     <Modal2 onClose={() => dispatch(hideDetail())}>
-      <Loader />
       <MovieDetailStyle
         className="media"
         bg={`https://image.tmdb.org/t/p/original/${media.backdrop_path}`}
