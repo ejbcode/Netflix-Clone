@@ -187,14 +187,12 @@ const MediaDetail = ({ id }) => {
   useEffect(() => {
     axiosInstance(url).then((response) => setMedia(response.data));
   }, [url]);
-  console.log(media);
   if (!media) {
     return <Loader />;
   }
 
   const handleVideoClick = (videoId) => {
     setEmbedId(videoId);
-    console.log(videoId);
     setTimeout(() => {
       setEmbedId(null);
     }, 20000);

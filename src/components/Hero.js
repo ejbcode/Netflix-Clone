@@ -103,7 +103,6 @@ export const Hero = (data) => {
     axiosInstance(url).then((response) => setMedia(response.data.results));
     setRandomMedia(Math.floor(Math.random() * 20));
   }, [url]);
-  console.log(media);
 
   /* eslint-disable */
   const { backdrop_path, title, name, overview, id } = !!media && media[randomMedia];

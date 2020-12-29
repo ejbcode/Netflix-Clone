@@ -15,6 +15,12 @@ export const authReducer = (state = initialState, action) => {
         name: action.payload.displayName,
       };
 
+    case types.setLoadingAuth:
+      return {
+        ...state,
+        loading: action.payload,
+      };
+
     case types.setProfile:
       return {
         ...state,

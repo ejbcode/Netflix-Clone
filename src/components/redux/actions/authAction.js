@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { firebase, googleAuthProvider } from '../../../firebase/firebaseConfig';
 import { types } from '../types';
 
@@ -7,6 +8,11 @@ export const login = (uid, displayName) => ({
     uid,
     displayName,
   },
+});
+
+export const setLoadingAuth = (loadingValue) => ({
+  type: types.setLoadingAuth,
+  payload: loadingValue,
 });
 
 export const setProfile = (id) => ({
@@ -23,18 +29,45 @@ export const logWithGoogle = () => (dispatch) => {
     });
 };
 
-export const sigInWithEmailPasswordName = (name, email, password) => (
+export const signUpWithEmailPasswordName = (name, email, password) => (
   dispatch
 ) => {
+  dispatch(setLoadingAuth(true));
+
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(async ({ user }) => {
       await user.updateProfile({ displayName: name });
       dispatch(login(user.uid, user.displayName));
+      dispatch(setLoadingAuth(false));
     })
     .catch((e) => {
-      console.log(e);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: e,
+      });
+      dispatch(setLoadingAuth(false));
+    });
+};
+
+export const signinWithEmailPassword = (email, password) => (dispatch) => {
+  dispatch(setLoadingAuth(true));
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(({ user }) => {
+      dispatch(login(user.uid, user.displayName));
+      dispatch(setLoadingAuth(false));
+    })
+    .catch((e) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: e,
+      });
+      dispatch(setLoadingAuth(false));
     });
 };
 

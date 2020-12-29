@@ -10,7 +10,7 @@ import { useForm } from '../components/helpers/useForm';
 import {
   logWithGoogle,
   setErrorMessage,
-  sigInWithEmailPasswordName,
+  signUpWithEmailPasswordName,
 } from '../components/redux/actions/authAction';
 
 const LoginStyle = styled.div`
@@ -178,8 +178,7 @@ export const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (isFormValid()) {
-      console.log('yeah');
-      dispatch(sigInWithEmailPasswordName(name, email, password));
+      dispatch(signUpWithEmailPasswordName(name, email, password));
     }
   };
 

@@ -2,10 +2,16 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import validator from 'validator';
 import loginBg from '../assets/loginBG.jpg';
 import logoImg from '../assets/logo.png';
 import logoGoogle from '../assets/logogoogle.png';
-import { logWithGoogle } from '../components/redux/actions/authAction';
+import { useForm } from '../components/helpers/useForm';
+import {
+  logWithGoogle,
+  setErrorMessage,
+  signinWithEmailPassword,
+} from '../components/redux/actions/authAction';
 
 const LoginStyle = styled.div`
   width: 100vw;
@@ -85,6 +91,12 @@ const LoginStyle = styled.div`
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    cursor: initial;
+  }
+
+  button:disabled,
+  button[disabled] {
+    background: #e5091466;
   }
   .cta {
     display: flex;
@@ -123,25 +135,52 @@ const LoginStyle = styled.div`
   a {
     color: white;
   }
+
+  .error-message {
+    color: orange;
+  }
 `;
 
 /* eslint-disable */
 
 export const Login = () => {
-  // const { formValues, handleInputChange } = useForm({
-  //   email: '',
-  //   password: '',
-  // });
-  const { name } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { errorMessage } = useSelector((state) => state.auth);
+  const { formValues, handleInputChange } = useForm({
+    email: '',
+    password: '',
+  });
+  const { email, password } = formValues;
+
+  const { name } = useSelector((state) => state.auth);
 
   const handleGoogleClick = () => {
     dispatch(logWithGoogle());
   };
 
+  const isFormValid = () => {
+    if (!validator.isEmail(email)) {
+      dispatch(setErrorMessage('This is not a email valid'));
+      return false;
+    }
+
+    if (password < 5) {
+      dispatch(setErrorMessage('The password must be at least 5 digits'));
+
+      return false;
+    }
+    dispatch(setErrorMessage(null));
+
+    return true;
+  };
+
   const handleSubmit = (event) => {
-event.preventDefault()
-  }
+    event.preventDefault();
+    if (isFormValid()) {
+      dispatch(signinWithEmailPassword(email, password));
+    }
+  };
 
   return (
     <>
@@ -153,7 +192,14 @@ event.preventDefault()
           <h1>{name}</h1>
           <h2 className="title">Sign In</h2>
           <div className="group">
-            <input id="email" className="group__input" type="text" required />
+            <input
+              id="email"
+              className="group__input"
+              type="text"
+              required
+              name="email"
+              onChange={handleInputChange}
+            />
             <label htmlFor="email" className="group__label">
               Email or phone number
             </label>
@@ -164,12 +210,18 @@ event.preventDefault()
               type="password"
               required
               id="password"
+              name="password"
+              onChange={handleInputChange}
             />
             <label htmlFor="password" className="group__label">
               Password
             </label>
           </div>
-          <button type="submit">Sign In</button>
+          <p className="error-message">{errorMessage}</p>
+          <button type="submit" disabled={loading}>
+            Sign In
+          </button>
+
           <div className="cta">
             <a className="cta__text" href="#">
               Remember me
@@ -180,7 +232,7 @@ event.preventDefault()
           </div>
           <div className="cta">
             <a className="cta__text" href="#" onClick={handleGoogleClick}>
-              <img className="logo-google" src={logoGoogle} alt="" />{' '}
+              <img className="logo-google" src={logoGoogle} alt="" />
               <p> Login with Google</p>
             </a>
           </div>
