@@ -1,6 +1,6 @@
 import { types } from '../types';
 
-const initialState = { isModalOpened: false, id: null };
+const initialState = { isModalOpened: false, id: null, favorites: [] };
 
 export const mediaReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -16,6 +16,12 @@ export const mediaReducer = (state = initialState, action) => {
         ...state,
         isModalOpened: false,
         id: null,
+      };
+
+    case types.addFavorites:
+      return {
+        ...state,
+        favorites: [...state.favorites, action.payload],
       };
 
     default:

@@ -266,9 +266,9 @@ export const Register = () => {
             </a>
           </div>
           <p>
-            New to Netflix?
+            Have you already have an account?
             <span>
-              <Link to="/auth/register"> Sign up now. </Link>
+              <Link to="/auth/"> Sign in </Link>
             </span>
           </p>
         </form>

@@ -8,7 +8,7 @@ import { getYearFromRelease } from './helpers/getYearFromRelease';
 import { useHours } from './helpers/useHours';
 import Modal2 from './Modal2';
 import YoutubeEmbed from './Video';
-import { hideDetail } from './redux/actions/mediaAction';
+import { addFavorites, hideDetail } from './redux/actions/mediaAction';
 import Loader from './Loader';
 
 const MovieDetailStyle = styled.div`
@@ -197,6 +197,18 @@ const MediaDetail = ({ id }) => {
       setEmbedId(null);
     }, 20000);
   };
+
+  function handleFavoriteClick() {
+    console.log(media.id);
+    const movieToAdd = {
+      id: media.id,
+      original_title: media.original_title,
+      backdrop_path: media.backdrop_path,
+    };
+    dispatch(addFavorites(movieToAdd));
+  }
+
+  console.log(media);
   return (
     <Modal2 onClose={() => dispatch(hideDetail())}>
       <MovieDetailStyle
@@ -224,7 +236,10 @@ const MediaDetail = ({ id }) => {
                 >
                   ► Play
                 </div>
-                <AiOutlinePlusCircle className="buttons-circle" />
+                <AiOutlinePlusCircle
+                  className="buttons-circle"
+                  onClick={handleFavoriteClick}
+                />
                 <span className="buttons-circle-tooltip">Add to Favorites</span>
                 <AiOutlineCheckCircle className="buttons-circle" />
               </div>

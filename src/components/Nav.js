@@ -129,7 +129,9 @@ export const Nav = () => {
       }
     >
       <div className="primary-nav">
-        <img className="logo" src={logoImg} alt="Logo" />
+        <NavLink to="/">
+          <img className="logo" src={logoImg} alt="Logo" />
+        </NavLink>
 
         <ul className="menu">
           <li>

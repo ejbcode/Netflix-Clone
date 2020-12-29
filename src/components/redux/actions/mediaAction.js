@@ -8,3 +8,8 @@ export const showDetail = (id) => ({
 export const hideDetail = () => ({
   type: types.hideDetail,
 });
+
+export const addFavorites = (media) => ({
+  type: types.addFavorites,
+  payload: media,
+});

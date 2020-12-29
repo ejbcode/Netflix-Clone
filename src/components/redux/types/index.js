@@ -7,4 +7,5 @@ export const types = {
 
   showDetail: '[Media-ShowDetail]',
   hideDetail: '[Media-HideDetail]',
+  addFavorites: '[Media - SetFavorites]',
 };
