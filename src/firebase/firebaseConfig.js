@@ -3,13 +3,12 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBbv94ckz_NMKG0cw0Dr_KeeIm6HXwPzj4',
-  authDomain: 'fir-login-6050d.firebaseapp.com',
-  databaseURL: 'https://fir-login-6050d.firebaseio.com',
-  projectId: 'fir-login-6050d',
-  storageBucket: 'fir-login-6050d.appspot.com',
-  messagingSenderId: '30687641564',
-  appId: '1:30687641564:web:72ac3d26fde90cdcc29919',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: 'netflix-clone-with-auth.firebaseapp.com',
+  projectId: 'netflix-clone-with-auth',
+  storageBucket: 'netflix-clone-with-auth.appspot.com',
+  messagingSenderId: '962049632426',
+  appId: '1:962049632426:web:4ab4e1283a1c40706d48d3',
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
