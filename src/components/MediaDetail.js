@@ -8,13 +8,8 @@ import { getYearFromRelease } from './helpers/getYearFromRelease';
 import { useHours } from './helpers/useHours';
 import Modal2 from './Modal2';
 import YoutubeEmbed from './Video';
-import {
-  addFavorites,
-  addMediaInFirestore,
-  hideDetail,
-} from './redux/actions/mediaAction';
+import { addMediaInFirestore, hideDetail } from './redux/actions/mediaAction';
 import Loader from './Loader';
-import { db } from '../firebase/firebaseConfig';
 
 const MovieDetailStyle = styled.div`
   width: 100%;
