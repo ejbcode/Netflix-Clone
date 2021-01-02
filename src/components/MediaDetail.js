@@ -8,8 +8,13 @@ import { getYearFromRelease } from './helpers/getYearFromRelease';
 import { useHours } from './helpers/useHours';
 import Modal2 from './Modal2';
 import YoutubeEmbed from './Video';
-import { addFavorites, hideDetail } from './redux/actions/mediaAction';
+import {
+  addFavorites,
+  addMediaInFirestore,
+  hideDetail,
+} from './redux/actions/mediaAction';
 import Loader from './Loader';
+import { db } from '../firebase/firebaseConfig';
 
 const MovieDetailStyle = styled.div`
   width: 100%;
@@ -187,6 +192,7 @@ const MediaDetail = ({ id }) => {
   useEffect(() => {
     axiosInstance(url).then((response) => setMedia(response.data));
   }, [url]);
+
   if (!media) {
     return <Loader />;
   }
@@ -199,16 +205,15 @@ const MediaDetail = ({ id }) => {
   };
 
   function handleFavoriteClick() {
-    console.log(media.id);
     const movieToAdd = {
       id: media.id,
       original_title: media.original_title,
-      backdrop_path: media.backdrop_path,
+      poster_path: media.poster_path,
     };
-    dispatch(addFavorites(movieToAdd));
+    // dispatch(addFavorites(movieToAdd));
+    dispatch(addMediaInFirestore(movieToAdd));
   }
 
-  console.log(media);
   return (
     <Modal2 onClose={() => dispatch(hideDetail())}>
       <MovieDetailStyle

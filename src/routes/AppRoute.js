@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import { firebase } from '../firebase/firebaseConfig';
 import GlobalStyle from '../GlobalStyle';
-
+import 'react-toastify/dist/ReactToastify.min.css';
 import { Login } from '../pages/login';
 import { Register } from '../pages/register';
 import { Home } from '../pages/home';
@@ -51,6 +52,7 @@ const AppRoute = () => {
   return (
     <div>
       <GlobalStyle />
+      <ToastContainer />
       <BrowserRouter>
         <Switch>
           <Route path="/auth/:path?" exact>

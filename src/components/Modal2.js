@@ -11,6 +11,7 @@ const ModalStyle = styled.div`
 
     z-index: 9999;
     overflow-y: auto;
+    z-index: 110;
   }
 
   .modal.disable-click::after {
@@ -45,6 +46,7 @@ const ModalStyle = styled.div`
     box-shadow: 0 0 100x rgba(0, 0, 0, 0.6);
     border-radius: 0.5rem;
     overflow: hidden;
+    z-index: 1000000;
     margin: 3rem auto;
   }
 
