@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import axiosInstance from './helpers/axiosInstance';
+import { showDetail } from './redux/actions/mediaAction';
 
 const RowsStyle = styled.article`
   margin: 30px 0;
@@ -81,6 +83,7 @@ const MovieItemStyle = styled.div`
 `;
 
 export const RowTopToday = (data) => {
+  const dispatch = useDispatch();
   const [media, setMedia] = useState(null);
   const [scrollX, setScrollX] = useState(0);
 
@@ -104,6 +107,10 @@ export const RowTopToday = (data) => {
 
     setScrollX(x);
   };
+
+  const handleClick = (value) => {
+    dispatch(showDetail(value));
+  };
   /* eslint-disable */
 
   return (
@@ -117,7 +124,7 @@ export const RowTopToday = (data) => {
         }}
       >
         {media?.slice(0, 9).map((item, count) => (
-          <MovieItemStyle count={count + 1} aqui="red" key={item.id}>
+          <MovieItemStyle count={count + 1}  key={item.id} onClick={()=>handleClick(item.id)}>
             <img
               src={`https://image.tmdb.org/t/p/w92/${item.poster_path}`}
               alt=""

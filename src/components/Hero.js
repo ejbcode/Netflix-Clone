@@ -76,6 +76,7 @@ const HeroStyle = styled.div`
     margin-right: 1rem;
     opacity: 1;
     transition: all ease 0.2s;
+    cursor: pointer;
   }
 
   .button-more:hover,

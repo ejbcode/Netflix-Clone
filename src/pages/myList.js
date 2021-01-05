@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Loader from '../components/Loader';
 import MediaDetail from '../components/MediaDetail';
+import ProfilePicsOptions from '../components/ProfilePicsOptions';
 import { showDetail } from '../components/redux/actions/mediaAction';
 import { db } from '../firebase/firebaseConfig';
 
@@ -14,7 +15,7 @@ const FavoriteGridStyle = styled.div`
     padding: 3rem 2rem 0;
     display: grid;
     gap: 0.8rem;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 
   .item {
@@ -41,13 +42,15 @@ export const MyList = () => {
 
   useEffect(() => {
     const getFavoriteMedia = async () => {
-      db.collection(uid).onSnapshot((querySnapshot) => {
-        const docs = [];
-        querySnapshot.forEach((doc) => {
-          docs.push({ ...doc.data(), id: doc.id });
+      db.collection(`users/${uid}/myList`)
+        .orderBy('date', 'desc')
+        .onSnapshot((querySnapshot) => {
+          const docs = [];
+          querySnapshot.forEach((doc) => {
+            docs.push({ ...doc.data(), id: doc.id });
+          });
+          setFavoriteMedia(docs);
         });
-        setFavoriteMedia(docs);
-      });
     };
     getFavoriteMedia();
   }, [uid]);
@@ -78,6 +81,7 @@ export const MyList = () => {
           ))}
         </div>
       </FavoriteGridStyle>
+      <ProfilePicsOptions />
     </>
   );
 };

@@ -20,12 +20,12 @@ export const addMediaInFirestore = (media) => {
   console.log('');
   return (dispatch, getState) => {
     const { uid } = getState().auth;
-    db.collection(uid)
+    db.collection(`users/${uid}/myList`)
       .doc(`${media.id}`)
       .set({
         original_title: media.original_title,
         poster_path: media.poster_path,
-        idi: media.id,
+        date: Date.now(),
       })
       .then(function () {
         toast(`Add ${media.original_title} to favorites`, {

@@ -76,6 +76,7 @@ const MovieDetailStyle = styled.div`
     transition: all ease 0.2s;
     background-color: #fff;
     color: #000;
+    cursor: pointer;
   }
 
   .button-play:hover {
@@ -186,6 +187,7 @@ const MediaDetail = ({ id }) => {
 
   useEffect(() => {
     axiosInstance(url).then((response) => setMedia(response.data));
+    console.log(media.similar_movies.results);
   }, [url]);
 
   if (!media) {
@@ -275,7 +277,7 @@ const MediaDetail = ({ id }) => {
               <div className="grid-similar">
                 {media.similar_movies.results
                   .map((movie) => (
-                    <div className="similar-item">
+                    <div className="similar-item" key={movie.id}>
                       <img
                         src={`https://image.tmdb.org/t/p/w300/${movie.backdrop_path}`}
                         alt=""

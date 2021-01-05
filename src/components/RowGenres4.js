@@ -39,16 +39,23 @@ const RowsStyle = styled.article`
 
   .row-item {
     display: inline-block;
-    width: 160px;
     cursor: pointer;
     transition: all 0.3s;
     margin-right: 10px;
   }
 
-  .row-item img {
+  .row-image {
+    width: 160px;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .row-image img {
     width: 100%;
     border-radius: 0.6rem;
     transition: transform ease 0.3s;
+    min-height: 235px;
+    object-fit: cover;
   }
 
   .row-item img:hover {
@@ -116,7 +123,11 @@ export const RowGenres2 = (data) => {
       >
         {media?.map((item) => (
           <div className="row-item" key={item.id} aria-hidden>
-            <div onClick={(event) => handleClick(event, item.id)} aria-hidden>
+            <div
+              className="row-image"
+              onClick={(event) => handleClick(event, item.id)}
+              aria-hidden
+            >
               <img
                 src={`https://image.tmdb.org/t/p/w154/${item.poster_path}`}
                 alt="movie poster"

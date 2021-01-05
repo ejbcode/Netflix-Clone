@@ -140,7 +140,7 @@ export const Nav = () => {
             </NavLink>
           </li>
 
-          <li>
+          {/* <li>
             <NavLink to="/tvshows" activeClassName="nav-active">
               Tv Shows
             </NavLink>
@@ -154,7 +154,7 @@ export const Nav = () => {
             <NavLink to="/popular" activeClassName="nav-active">
               New & Popular
             </NavLink>
-          </li>
+          </li> */}
 
           <li>
             <NavLink to="/mylist" activeClassName="nav-active">
