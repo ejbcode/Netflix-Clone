@@ -27,13 +27,13 @@ const RowsStyle = styled.article`
     width: 40px;
     height: 245px;
     background: linear-gradient(to right, #111 15%, transparent 90%);
-    z-index: 999;
+    z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     cursor: pointer;
-    opacity: 0;
+    opacity: 1;
     transition: all ease 0.3s;
   }
 
@@ -75,6 +75,12 @@ const RowsStyle = styled.article`
   :hover .arrow-right {
     transform: scaleY(1.22);
     opacity: 1;
+  }
+  @media screen and (min-width: 768px) {
+    .arrow-left,
+    .arrow-right {
+      opacity: 0;
+    }
   }
 `;
 

@@ -29,7 +29,7 @@ const ModalStyle = styled.div`
     position: fixed;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.8);
     opacity: 0;
     transition-property: opacity;
     transition-timing-function: ease;

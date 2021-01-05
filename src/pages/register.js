@@ -15,7 +15,7 @@ import {
 
 const LoginStyle = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: 100vmax;
   position: center center;
   background: linear-gradient(
       rgba(20, 20, 20, 0.7) 0%,
@@ -24,22 +24,26 @@ const LoginStyle = styled.div`
     url(${loginBg});
 
   background-size: cover;
-  display: flex;
-  flex-direction: column;
+
+  .container {
+    max-width: 1800px;
+    margin: 0 auto;
+  }
   .logo {
-    margin: 1.2rem;
+    padding: 1.2rem;
   }
 
   .login {
     margin: 0 auto;
-    min-width: 400px;
+    width: 340px;
     background: rgba(0, 0, 0, 0.7);
     border-radius: 0.8rem;
-    padding: 6rem 6rem 10rem;
-    min-height: 330px;
+    padding: 6rem 3rem;
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin-bottom: 5rem;
   }
   .title {
     margin-bottom: 1rem;
@@ -133,6 +137,14 @@ const LoginStyle = styled.div`
   .error-message {
     color: orange;
   }
+
+  @media screen and (min-width: 786px) {
+    .login {
+      padding: 6rem 6rem 10rem;
+      min-height: 330px;
+      width: 560px;
+    }
+  }
 `;
 
 // /* eslint-disable */
@@ -185,8 +197,10 @@ export const Register = () => {
   /* eslint-disable */
 
   return (
-    <>
+    
       <LoginStyle>
+      <div className="container">
+
         <div className="logo">
           <img src={logoImg} alt="" />
         </div>
@@ -272,7 +286,7 @@ export const Register = () => {
             </span>
           </p>
         </form>
+    </div>
       </LoginStyle>
-    </>
   );
 };

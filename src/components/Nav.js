@@ -14,7 +14,7 @@ const NavStyle = styled.nav`
   max-width: 2000px;
   margin: 0 auto;
   position: fixed;
-  z-index: 10;
+  z-index: 110;
   right: 0;
   left: 0;
   --colorBgNav: linear-gradient(
@@ -37,7 +37,8 @@ const NavStyle = styled.nav`
   }
 
   .primary-nav ul {
-    display: none;
+    display: flex;
+    align-items: center;
   }
 
   .logo {
@@ -107,10 +108,6 @@ const NavStyle = styled.nav`
     .logo-profile {
       max-width: 30px;
       border-radius: 7px;
-    }
-    .primary-nav ul {
-      display: flex;
-      align-items: center;
     }
   }
 `;

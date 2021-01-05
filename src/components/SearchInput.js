@@ -108,6 +108,7 @@ export const SearchInput = () => {
           onChange={handleInputChange}
           tabIndex="0"
           autoFocus
+          autoComplete="off" 
           ref={searchInput} 
         />
 

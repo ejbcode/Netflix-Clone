@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`${css`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-appearance: none;
   }
 
   html {
@@ -26,7 +27,6 @@ const GlobalStyle = createGlobalStyle`${css`
     scroll-behavior: smooth;
     color: var(--colorTxt);
     transition: all 0.2s linear;
-    max-width: 1900px;
     margin: 0 auto;
   }
 

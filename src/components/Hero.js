@@ -19,12 +19,12 @@ const HeroStyle = styled.div`
   .wrapper {
     position: relative;
     min-height: 100px;
-    padding-bottom: 45%;
+    padding-bottom: 55%;
     overflow: hidden;
   }
   .description {
     z-index: 10;
-    width: 40%;
+    width: 60%;
     position: absolute;
     top: 25%;
     left: 2%;
@@ -53,10 +53,10 @@ const HeroStyle = styled.div`
       linear-gradient(to top, #111 1%, transparent 30%);
   }
   h2 {
-    font-size: 2.6vw;
+    font-size: 3.6vw;
   }
   p {
-    font-size: 1.4vw;
+    font-size: 1.8vw;
   }
 
   .buttons {
@@ -69,7 +69,7 @@ const HeroStyle = styled.div`
   .button-play,
   .button-more {
     font-weight: bold;
-    font-size: 1vw;
+    font-size: 25%;
     padding: 1rem 2rem;
     border-radius: 5px;
     text-decoration: none;
@@ -91,6 +91,23 @@ const HeroStyle = styled.div`
   .button-more {
     background-color: #333;
     color: #fff;
+  }
+
+  @media screen and (min-width: 768px) {
+    h2 {
+      font-size: 2.6vw;
+    }
+    p {
+      font-size: 1.4vw;
+    }
+
+    .button-play,
+    .button-more {
+      font-size: 1vw;
+    }
+    .wrapper {
+      padding-bottom: 45%;
+    }
   }
 `;
 

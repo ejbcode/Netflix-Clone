@@ -149,6 +149,9 @@ const MovieDetailStyle = styled.div`
     background: #2f2f2f;
   }
 
+  .similar-item img {
+    width: 100%;
+  }
   .similar-item-description {
     padding: 0 1.3rem;
     font-size: 1.2rem;
@@ -209,6 +212,7 @@ const MediaDetail = ({ id }) => {
     // dispatch(addFavorites(movieToAdd));
     dispatch(addMediaInFirestore(movieToAdd));
   }
+  console.log(media);
 
   return (
     <Modal2 onClose={() => dispatch(hideDetail())}>
