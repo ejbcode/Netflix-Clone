@@ -187,7 +187,6 @@ const MediaDetail = ({ id }) => {
 
   useEffect(() => {
     axiosInstance(url).then((response) => setMedia(response.data));
-    console.log(media.similar_movies.results);
   }, [url]);
 
   if (!media) {
