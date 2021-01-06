@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Loader from '../components/Loader';
 import MediaDetail from '../components/MediaDetail';
 import { showDetail } from '../components/redux/actions/mediaAction';
-import { db } from '../firebase/firebaseConfig';
 
 const FavoriteGridStyle = styled.div`
   padding-top: 6rem;
@@ -34,25 +33,7 @@ const FavoriteGridStyle = styled.div`
 export const MyList = () => {
   const dispatch = useDispatch();
   const { id, isModalOpened } = useSelector((state) => state.media);
-
-  const [favoriteMedia, setFavoriteMedia] = useState([]);
-
-  const { uid } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    const getFavoriteMedia = async () => {
-      db.collection(`users/${uid}/myList`)
-        .orderBy('date', 'desc')
-        .onSnapshot((querySnapshot) => {
-          const docs = [];
-          querySnapshot.forEach((doc) => {
-            docs.push({ ...doc.data(), id: doc.id });
-          });
-          setFavoriteMedia(docs);
-        });
-    };
-    getFavoriteMedia();
-  }, [uid]);
+  const { favorites } = useSelector((state) => state.media);
 
   const handleClick = (event, value) => {
     event.preventDefault();
@@ -64,9 +45,9 @@ export const MyList = () => {
       {isModalOpened && <MediaDetail id={id} />}
       <FavoriteGridStyle>
         <h2>My List</h2>
-        {!favoriteMedia && <Loader />}
+        {!favorites && <Loader />}
         <div className="grid">
-          {favoriteMedia.map((item) => (
+          {favorites.map((item) => (
             <div
               className="item"
               onClick={(event) => handleClick(event, item.id)}

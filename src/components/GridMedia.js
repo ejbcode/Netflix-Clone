@@ -31,7 +31,6 @@ const FavoriteGridStyle = styled.div`
 `;
 
 const GridMedia = (media) => {
-  console.log(media);
   const dispatch = useDispatch();
   const { id, isModalOpened } = useSelector((state) => state.media);
 
@@ -42,7 +41,6 @@ const GridMedia = (media) => {
   return (
     <>
       <p>hola</p>
-      <p>{console.log(media.length)}</p>
       {isModalOpened && <MediaDetail id={id} />}
       <FavoriteGridStyle>
         <h2>My List</h2>

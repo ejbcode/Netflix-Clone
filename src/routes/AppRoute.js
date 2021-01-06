@@ -20,6 +20,7 @@ import { MyList } from '../pages/myList';
 import { Popular } from '../pages/popular';
 import { Search } from '../pages/search';
 import Loader from '../components/Loader';
+import { loadFavorites } from '../components/redux/actions/mediaAction';
 
 const AppRoute = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const AppRoute = () => {
       if (user?.uid) {
         dispatch(login(user.uid, user.displayName));
         setIsLoggedIn(true);
+        dispatch(loadFavorites(user.uid));
       } else {
         setIsLoggedIn(false);
       }

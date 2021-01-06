@@ -14,7 +14,6 @@ export const Home = () => {
       <h2>Home</h2>
       <Hero data={genresList.heroAll} />
       {isModalOpened && <MediaDetail id={id} />}
-
       <RowGenres2 data={genresList.action} />
       <RowTopToday data={genresList.topPopular} />
       <RowGenres2 data={genresList.horror} />

@@ -21,7 +21,7 @@ export const mediaReducer = (state = initialState, action) => {
     case types.addFavorites:
       return {
         ...state,
-        favorites: [...state.favorites, action.payload],
+        favorites: action.payload,
       };
 
     default:

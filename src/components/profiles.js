@@ -7,4 +7,3 @@ export const profiles = [
   { id: 4, fullName: 'Ignacio' },
   { id: 5, fullName: 'Raudales' },
 ];
-console.log(profiles);

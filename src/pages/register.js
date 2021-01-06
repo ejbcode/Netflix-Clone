@@ -171,7 +171,7 @@ export const Register = () => {
       return false;
     }
     if (!isEmail(email)) {
-      dispatch(setErrorMessage('This not a valid Email'));
+      dispatch(setErrorMessage('This is not a valid Email'));
       return false;
     }
     if (password.length < 5) {

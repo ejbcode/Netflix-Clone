@@ -176,7 +176,7 @@ export const Nav = () => {
             <NavLink to="/who" activeClassName="nav-active">
               <img
                 className="logo-profile"
-                src={`../assets/avatar${profile?.id}.png`}
+                src={`../assets/avatar${!profile ? 1 : profile.id}.png`}
                 alt="Logo profile"
               />
             </NavLink>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MdStar, MdTimer } from 'react-icons/md';
 import styled from 'styled-components';
 import { AiOutlinePlusCircle, AiOutlineCheckCircle } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axiosInstance from './helpers/axiosInstance';
 import { getYearFromRelease } from './helpers/getYearFromRelease';
 import { useHours } from './helpers/useHours';
@@ -185,6 +185,7 @@ const MovieDetailStyle = styled.div`
 
 const MediaDetail = ({ id }) => {
   /* eslint-enable */
+  const { favorites } = useSelector((state) => state.media);
   const dispatch = useDispatch();
   const [media, setMedia] = useState(null);
   const [embedId, setEmbedId] = useState(null);
@@ -207,13 +208,14 @@ const MediaDetail = ({ id }) => {
     }, 20000);
   };
 
+  const isMediaInFavorite = favorites.find((fav) => fav.id === `${media.id}`);
+
   function handleAddFavoriteClick() {
     const movieToAdd = {
       id: media.id,
       original_title: media.original_title,
       poster_path: media.poster_path,
     };
-    // dispatch(addFavorites(movieToAdd));
     dispatch(addMediaInFirestore(movieToAdd));
   }
 
@@ -235,9 +237,9 @@ const MediaDetail = ({ id }) => {
           <div className="media_content">
             <div className="media_title">
               <h1 className="title">{media.title}</h1>
-
-              <h3 className="tagline">&quot;{media.tagline}&quot;</h3>
-
+              {media.tagline && (
+                <h3 className="tagline">&quot;{media.tagline}&quot;</h3>
+              )}
               <div className="buttons">
                 <div
                   className="button-play"
@@ -248,18 +250,27 @@ const MediaDetail = ({ id }) => {
                 >
                   ► Play
                 </div>
-                <AiOutlinePlusCircle
-                  className="buttons-circle"
-                  onClick={handleAddFavoriteClick}
-                />
-                <span className="buttons-circle-tooltip">Add to Favorites</span>
-                <AiOutlineCheckCircle
-                  className="buttons-circle"
-                  onClick={handleRemoveFavoriteClick}
-                />
-                <span className="buttons-circle-tooltip">
-                  Remove from Favorites
-                </span>
+                {isMediaInFavorite ? (
+                  <>
+                    <AiOutlineCheckCircle
+                      className="buttons-circle"
+                      onClick={handleRemoveFavoriteClick}
+                    />
+                    <span className="buttons-circle-tooltip">
+                      Remove from Favorites
+                    </span>
+                  </>
+                ) : (
+                  <>
+                    <AiOutlinePlusCircle
+                      className="buttons-circle"
+                      onClick={handleAddFavoriteClick}
+                    />
+                    <span className="buttons-circle-tooltip">
+                      Add to Favorites
+                    </span>
+                  </>
+                )}
               </div>
             </div>
             <div className="media_description">

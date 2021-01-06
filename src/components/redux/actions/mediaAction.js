@@ -16,32 +16,29 @@ export const addFavorites = (media) => ({
   payload: media,
 });
 
-export const addMediaInFirestore = (media) => {
-  console.log('');
-  return (dispatch, getState) => {
-    const { uid } = getState().auth;
-    db.collection(`users/${uid}/myList`)
-      .doc(`${media.id}`)
-      .set({
-        original_title: media.original_title,
-        poster_path: media.poster_path,
-        date: Date.now(),
-      })
-      .then(function () {
-        toast(`Add ${media.original_title} to favorites`, {
-          type: 'success',
-          position: 'top-center',
-          autoClose: 2000,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
-      .catch(function (error) {
-        console.error('Error writing document: ', error);
+export const addMediaInFirestore = (media) => (dispatch, getState) => {
+  const { uid } = getState().auth;
+  db.collection(`users/${uid}/myList`)
+    .doc(`${media.id}`)
+    .set({
+      original_title: media.original_title,
+      poster_path: media.poster_path,
+      date: Date.now(),
+    })
+    .then(function () {
+      toast(`Add ${media.original_title} to favorites`, {
+        type: 'success',
+        position: 'top-center',
+        autoClose: 2000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
       });
-  };
+    })
+    .catch(function (error) {
+      console.error('Error writing document: ', error);
+    });
 };
 
 export const deleteMediaInFirestore = (media) => (dispatch, getState) => {
@@ -50,7 +47,7 @@ export const deleteMediaInFirestore = (media) => (dispatch, getState) => {
     .doc(`${media.id}`)
     .delete()
     .then(function () {
-      toast(`Remove ${media.original_title} to favorites`, {
+      toast(`Remove ${media.original_title} from favorites`, {
         type: 'error',
         position: 'top-center',
         autoClose: 2000,
@@ -62,5 +59,17 @@ export const deleteMediaInFirestore = (media) => (dispatch, getState) => {
     })
     .catch(function (error) {
       console.error('Error removing document: ', error);
+    });
+};
+
+export const loadFavorites = (uid) => (dispatch) => {
+  db.collection(`users/${uid}/myList`)
+    .orderBy('date', 'desc')
+    .onSnapshot((querySnapshot) => {
+      const docs = [];
+      querySnapshot.forEach((doc) => {
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      dispatch(addFavorites(docs));
     });
 };

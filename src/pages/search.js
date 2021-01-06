@@ -51,7 +51,6 @@ export const Search = (params) => {
   useEffect(() => {
     axiosInstance(url).then((response) => setMedia(response.data.results));
   }, [url]);
-  console.log(media);
 
   const dispatch = useDispatch();
 
@@ -67,7 +66,6 @@ export const Search = (params) => {
         <h2>My List</h2>
         {!media && <Loader />}
         <div className="grid">
-          {console.log(media)}
           {media &&
             media.map((item) => (
               <div
