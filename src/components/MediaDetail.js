@@ -8,7 +8,11 @@ import { getYearFromRelease } from './helpers/getYearFromRelease';
 import { useHours } from './helpers/useHours';
 import Modal2 from './Modal2';
 import YoutubeEmbed from './Video';
-import { addMediaInFirestore, hideDetail } from './redux/actions/mediaAction';
+import {
+  addMediaInFirestore,
+  deleteMediaInFirestore,
+  hideDetail,
+} from './redux/actions/mediaAction';
 import Loader from './Loader';
 
 const MovieDetailStyle = styled.div`
@@ -203,7 +207,7 @@ const MediaDetail = ({ id }) => {
     }, 20000);
   };
 
-  function handleFavoriteClick() {
+  function handleAddFavoriteClick() {
     const movieToAdd = {
       id: media.id,
       original_title: media.original_title,
@@ -212,13 +216,16 @@ const MediaDetail = ({ id }) => {
     // dispatch(addFavorites(movieToAdd));
     dispatch(addMediaInFirestore(movieToAdd));
   }
-  console.log(media);
+
+  function handleRemoveFavoriteClick() {
+    dispatch(deleteMediaInFirestore(media));
+  }
 
   return (
     <Modal2 onClose={() => dispatch(hideDetail())}>
       <MovieDetailStyle
         className="media"
-        bg={`https://image.tmdb.org/t/p/original/${media.backdrop_path}`}
+        bg={`https://image.tmdb.org/t/p/w780/${media.backdrop_path}`}
       >
         <div className="header_media">
           {embedId && <YoutubeEmbed embedId={embedId} />}
@@ -243,10 +250,16 @@ const MediaDetail = ({ id }) => {
                 </div>
                 <AiOutlinePlusCircle
                   className="buttons-circle"
-                  onClick={handleFavoriteClick}
+                  onClick={handleAddFavoriteClick}
                 />
                 <span className="buttons-circle-tooltip">Add to Favorites</span>
-                <AiOutlineCheckCircle className="buttons-circle" />
+                <AiOutlineCheckCircle
+                  className="buttons-circle"
+                  onClick={handleRemoveFavoriteClick}
+                />
+                <span className="buttons-circle-tooltip">
+                  Remove from Favorites
+                </span>
               </div>
             </div>
             <div className="media_description">

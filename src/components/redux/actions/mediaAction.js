@@ -43,3 +43,24 @@ export const addMediaInFirestore = (media) => {
       });
   };
 };
+
+export const deleteMediaInFirestore = (media) => (dispatch, getState) => {
+  const { uid } = getState().auth;
+  db.collection(`users/${uid}/myList`)
+    .doc(`${media.id}`)
+    .delete()
+    .then(function () {
+      toast(`Remove ${media.original_title} to favorites`, {
+        type: 'error',
+        position: 'top-center',
+        autoClose: 2000,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    })
+    .catch(function (error) {
+      console.error('Error removing document: ', error);
+    });
+};

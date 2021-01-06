@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Loader from '../components/Loader';
 import MediaDetail from '../components/MediaDetail';
-import ProfilePicsOptions from '../components/ProfilePicsOptions';
 import { showDetail } from '../components/redux/actions/mediaAction';
 import { db } from '../firebase/firebaseConfig';
 
@@ -67,21 +66,20 @@ export const MyList = () => {
         <h2>My List</h2>
         {!favoriteMedia && <Loader />}
         <div className="grid">
-          {favoriteMedia.map((favMedia) => (
+          {favoriteMedia.map((item) => (
             <div
               className="item"
-              onClick={(event) => handleClick(event, favMedia.id)}
+              onClick={(event) => handleClick(event, item.id)}
               aria-hidden
             >
               <img
-                src={`https://image.tmdb.org/t/p/w154/${favMedia.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w154/${item.poster_path}`}
                 alt=""
               />
             </div>
           ))}
         </div>
       </FavoriteGridStyle>
-      <ProfilePicsOptions />
     </>
   );
 };

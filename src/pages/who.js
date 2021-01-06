@@ -5,7 +5,7 @@ import { ProfileRow } from '../components/ProfileRow';
 
 const WhoStyle = styled.div`
   background: #141414;
-  z-index: 10;
+  z-index: 1000;
   position: relative;
   height: 100vh;
 `;

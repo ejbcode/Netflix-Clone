@@ -35,6 +35,11 @@ export const profilesPics = [
     url:
       'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFE9GnAVtALSucmmCMA70_bMOmvDLWJX58qPkEGwPoLxE8k3lOM251Vd7zLFEhIGcK7xQeM9Okg9RB-JXqtoQBBWb-Q.png?r=29d',
   },
+  {
+    id: 7,
+    url:
+      'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFKCve88wDLOukZnKSjlcAht6yPs0HxGBc7E2la_V_Y7pKfQJNhuRRE4PbsDwYUMGHlZVQkFQZSayP3-Fcugr22AFHw.png?r=6f8',
+  },
 
   {
     id: 8,
@@ -56,58 +61,54 @@ export const profilesPics = [
     url:
       'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFHKKDBXreJdozFcLZAlImsjZ_vG_7GBKgiSjG9tl3fDWTeSQ4MxXoehM59ewCQo-SYc0Z8YtKuDPutw-9DrnM4uIYQ.png?r=8aa',
   },
+
   {
-    id: 3,
-    url:
-      'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFKCve88wDLOukZnKSjlcAht6yPs0HxGBc7E2la_V_Y7pKfQJNhuRRE4PbsDwYUMGHlZVQkFQZSayP3-Fcugr22AFHw.png?r=6f8',
-  },
-  {
-    id: 3,
+    id: 12,
     url:
       'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFM6mv7W2EMdffmgRb9ClJDoipbWAfa42WBVZ4ZPCfIROg1C54VEs9yTfOtLxWcNLCU8XozemXl1m6nRVzs4esOf-6g.png?r=a48',
   },
   {
-    id: 0,
+    id: 13,
     url:
       'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFOn61d8iFaYtN-VApgzC4LcuGq9DygnCwxNNzAPF4RNEIFdng6ugX_N3rMWAB8BjDuH5XitvPcvzbfWNLrijKUvRpw.png?r=2ca',
   },
   {
-    id: 1,
+    id: 14,
     url:
       'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFFNpvUWEcToEOcf84YIAkDopoPkujSEkD5mQdRRU_8osXVdQAQJlzhBx_oRUl2DBJvzyHE3zUSRPEFjepJlaD5qeew.png?r=a41',
   },
   {
-    id: 2,
+    id: 15,
     url:
       'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFMstHXkHvBG_NbY8fgDaGcU_JSj_oBnz8VC54m9fss6wNM2UX4Yp8hZGLP7KmM5UUYJrkAokjgP3ybR5QdYjVL0XpQ.png?r=d6b',
   },
   {
-    id: 3,
+    id: 16,
     url:
       'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFOdTHpEh_Ot5KYIhdfXVCrgN5wVUEbTrqbw2J0qTL93_soddgvWGX24h00FOnHeehEI7q6_wkFSHpG9kQmL1TFYnmw.png?r=83d',
   },
   {
-    id: 0,
+    id: 17,
     url:
       'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFCFTYyL_SERp6gi-9znKaauL-0kQ0jkekdAHPDe9NbgjHb1PrvEUEl47yTeUwQNqfkgawCayUzR3aCCAN-W1K0OneQ.png?r=215',
   },
   {
-    id: 1,
+    id: 18,
     url:
       'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFOg5ZVCMvnigO4PC3z31cfprdrZQhtw_d-E-apYRY_1COIxSeAedQaBNfNU3Fr_j3NatFFteRMnNwEeMAFvtx_KtWw.png?r=c37',
   },
   {
-    id: 2,
+    id: 19,
     url:
       'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFKTAbCrJsU56LcCUK6ZZSlt3tM91zzHahaIHnZtD3FG6JyIU8fE8PNzRL1koI7RWBmbT57ddarV7PJKN-NDvRaaFbQ.png?r=67a',
   },
   {
-    id: 3,
+    id: 20,
     url:
       'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAAFMExAkjWcUy-ffudMXHz2RQnVXiZIMIlrbRvIGwX8toSWzM4HdGcRT_ksHk9CCTC1aSFNlDowqlyXeS3bYoTvYCIeA.png?r=7f5',
   },
   {
-    id: 3,
+    id: 21,
     url:
       'https://occ-0-2530-185.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAABWe2M-e3JareQHbD2txX1uLUReJuw01r-5wqDt2ejcEE19aBSVZvip8FssIHS5U2QFIzUHJPmsKCEf1sKW8P5_bQKWgm.png?r=ee6',
   },

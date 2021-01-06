@@ -17,6 +17,7 @@ const HeroStyle = styled.div`
   margin-bottom: -6rem;
 
   .wrapper {
+    width: 100%;
     position: relative;
     min-height: 100px;
     padding-bottom: 55%;
@@ -34,6 +35,10 @@ const HeroStyle = styled.div`
 
   .image-wrapper {
     position: absolute;
+    width: 100%;
+    img {
+      width: 100%;
+    }
   }
 
   .wrapper::after {

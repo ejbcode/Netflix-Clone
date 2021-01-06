@@ -6,6 +6,7 @@ import axiosInstance from './helpers/axiosInstance';
 import { showDetail } from './redux/actions/mediaAction';
 
 const RowsStyle = styled.article`
+  max-width: 1900px;
   position: relative;
   margin: 30px 0;
   overflow: hidden;

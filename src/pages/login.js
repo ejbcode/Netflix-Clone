@@ -161,7 +161,7 @@ export const Login = () => {
   const { errorMessage } = useSelector((state) => state.auth);
   const { formValues, handleInputChange } = useForm({
     email: 'josebermudez@gmail.com',
-    password: '',
+    password: '12345678',
   });
   const { email, password } = formValues;
 
