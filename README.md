@@ -1,3 +1,28 @@
+# Netflix Clone
+
+Netflix Clone App, you can SignUp with email and password or with a Google Account,
+Can see the top ten movies, see the details, see movies related, add or remove from favorites.
+Change the pic profile, search for a movie by name. All data is store in Firestore and is unique for each user.
+
+![alt](demo.gif)
+
+## Tech uses
+
+1. React
+1. React-Router-dom
+1. Styled components
+1. Redux and Redux Thunk
+1. Firebase Auth and Firestore
+1. axios
+
+## install
+
+1. Clone Project
+1. npm i
+1. add api key from TMDB and firebase api key
+
+### Steps
+
 1. install React router
    npm install react-router-dom
 1. install styled component

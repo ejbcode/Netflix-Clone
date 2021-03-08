@@ -160,7 +160,7 @@ export const Login = () => {
   const dispatch = useDispatch();
   const { errorMessage } = useSelector((state) => state.auth);
   const { formValues, handleInputChange } = useForm({
-    email: 'josebermudez@gmail.com',
+    email: 'demo@gmail.com',
     password: '12345678',
   });
   const { email, password } = formValues;

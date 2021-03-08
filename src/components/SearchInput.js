@@ -50,9 +50,11 @@ const FormStyle = styled.form`
       top: 50%;
       transform: translateY(-50%);
       position: absolute;
+      display: none;
     }
 
     .xtimes-active {
+      display: initial;
       font-size: 2rem;
       width: 18px;
       right: 8px;

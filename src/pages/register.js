@@ -153,10 +153,10 @@ export const Register = () => {
   const dispatch = useDispatch();
   const { errorMessage } = useSelector((state) => state.auth);
   const { formValues, handleInputChange } = useForm({
-    name: 'jose bermudez',
-    email: 'josebermudez@gmail.com',
-    password: '12345678',
-    password2: '12345678',
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
   });
 
   const { name, email, password, password2 } = formValues;
@@ -252,7 +252,7 @@ export const Register = () => {
           <div className="group">
             <input
               className="group__input"
-              type="password2"
+              type="password"
               required
               id="password2"
               name="password2"

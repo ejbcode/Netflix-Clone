@@ -1,10 +1,4 @@
 {
-  "workbench.colorCustomizations": {
-    "titleBar.activeForeground": "#fff",
-    "titleBar.inactiveForeground": "#000000cc",
-    "titleBar.activeBackground": "#ff006a",
-    "titleBar.inactiveBackground": "#FF006aCC"
-  },
   // // These are all my auto-save configs
   // "editor.formatOnSave": true,
   // // turn it off for JS and JSX, we will do this via eslint

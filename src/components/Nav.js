@@ -166,12 +166,6 @@ export const Nav = () => {
           <li>
             <SearchInput />
           </li>
-          {/* <li>
-            <AiOutlineGift />
-          </li>
-          <li>
-            <AiFillBell />
-          </li> */}
           <li className="profile">
             <NavLink to="/who" activeClassName="nav-active">
               <img
